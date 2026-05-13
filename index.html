@@ -4,8 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>DisputeDispatch — CFPB Filing Automation for Credit Repair Businesses</title>
-<meta name="description" content="We file CFPB complaints for your credit repair clients in 24 hours. B2B subcontracting starting at $75.">
+<meta name="description" content="We file CFPB complaints for your credit repair clients in 24 hours. B2B subcontracting starting at $75. 100% white label — you keep the credit.">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:title" content="DisputeDispatch — CFPB Filing for Credit Repair Businesses">
+<meta property="og:description" content="We file every CFPB complaint same day. You deliver results under your brand. Starting at $75.">
+<meta property="og:url" content="https://disputedispatch.com">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="DisputeDispatch — CFPB Filing Automation">
+<meta name="twitter:description" content="Same-day CFPB filing for credit repair businesses. 100% white label. Starting at $75.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 /* ─────────────────────────────────────
@@ -408,18 +417,29 @@ hr.dv{border:none;border-top:1px solid rgba(255,255,255,.05);margin:2rem 0;}
 .faq-q:hover{color:var(--g3);}
 .faq-q::after{content:'+';color:var(--g3);font-size:1.4rem;font-weight:300;flex-shrink:0;}
 .faq.open .faq-q::after{content:'−';}
-.faq-a{font-size:.95rem;color:var(--t2);line-height:1.78;margin-top:.9rem;display:none;}
-.faq.open .faq-a{display:block;}
+/* .faq-a smooth animation now handled in additions above */
 
 /* ─────────────────────────────────────
    FOOTER
 ───────────────────────────────────── */
-footer{border-top:1px solid rgba(212,168,64,.08);padding:3rem 0;}
-.foot-i{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1.5rem;}
-footer p{font-size:.88rem;color:var(--t2);}
+footer{border-top:1px solid rgba(212,168,64,.08);padding:4rem 0 2rem;}
+.foot-top{display:grid;grid-template-columns:1fr 1.8fr;gap:4rem;margin-bottom:3rem;padding-bottom:3rem;border-bottom:1px solid rgba(255,255,255,.05);}
+.foot-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;}
+.foot-col-title{font-family:'Syne',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--g3);margin-bottom:1rem;}
+.foot-cols a{display:block;color:var(--t2);text-decoration:none;font-size:.9rem;padding:.28rem 0;transition:color .2s;}
+.foot-cols a:hover{color:var(--t1);}
+.foot-badge{
+  display:inline-flex;align-items:center;gap:5px;
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);
+  border-radius:100px;padding:3px 10px;
+  font-size:.72rem;font-weight:600;color:var(--t2);
+}
+.foot-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
+footer p{font-size:.85rem;color:var(--t3);}
 .foot-links{display:flex;gap:2rem;}
-.foot-links a{color:var(--t2);text-decoration:none;font-size:.88rem;transition:color .2s;}
+.foot-links a{color:var(--t3);text-decoration:none;font-size:.85rem;transition:color .2s;}
 .foot-links a:hover{color:var(--g3);}
+@media(max-width:860px){.foot-top{grid-template-columns:1fr;gap:2.5rem;}.foot-cols{grid-template-columns:1fr 1fr;}}
 
 /* ─────────────────────────────────────
    POPUP
@@ -476,8 +496,161 @@ footer p{font-size:.88rem;color:var(--t2);}
 }
 
 /* ─────────────────────────────────────
-   DATE PICKER DARK STYLING
+   PAGE ENTRANCE
 ───────────────────────────────────── */
+@keyframes page-in{from{opacity:0}to{opacity:1}}
+body{animation:page-in .4s ease forwards;}
+
+/* ─────────────────────────────────────
+   SCROLL PROGRESS BAR
+───────────────────────────────────── */
+#scroll-progress{
+  position:fixed;top:0;left:0;height:2px;width:0%;
+  background:var(--gg);z-index:9999;
+  transition:width .1s linear;
+  box-shadow:0 0 12px rgba(212,168,64,.6);
+}
+
+/* ─────────────────────────────────────
+   BACK TO TOP
+───────────────────────────────────── */
+#back-top{
+  position:fixed;bottom:2rem;right:2rem;z-index:400;
+  width:44px;height:44px;border-radius:12px;
+  background:var(--s2);border:1px solid var(--grim);
+  color:var(--g3);font-size:1.1rem;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;
+  transform:translateY(12px);
+  transition:opacity .3s,transform .3s,background .2s,box-shadow .2s;
+  box-shadow:0 8px 24px rgba(0,0,0,.4);
+}
+#back-top.show{opacity:1;pointer-events:all;transform:translateY(0);}
+#back-top:hover{background:var(--gdim);box-shadow:0 8px 30px rgba(212,168,64,.25);}
+
+/* ─────────────────────────────────────
+   MOBILE MENU
+───────────────────────────────────── */
+.hamburger{
+  display:none;flex-direction:column;gap:5px;
+  cursor:pointer;padding:.5rem;border:none;background:transparent;
+}
+.hamburger span{
+  display:block;width:22px;height:2px;
+  background:var(--t2);border-radius:2px;
+  transition:all .3s;
+}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0);}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+.mobile-nav{
+  display:none;position:fixed;top:68px;left:0;right:0;
+  background:rgba(2,4,7,.97);backdrop-filter:blur(28px);
+  border-bottom:1px solid rgba(212,168,64,.1);
+  padding:1.5rem 5%;z-index:199;
+  flex-direction:column;gap:.4rem;
+  transform:translateY(-10px);opacity:0;
+  transition:opacity .25s,transform .25s;
+}
+.mobile-nav.open{opacity:1;transform:translateY(0);}
+.mobile-nav a{
+  color:var(--t2);text-decoration:none;font-size:1rem;
+  font-weight:500;padding:.75rem 1rem;border-radius:10px;
+  transition:all .2s;display:block;
+}
+.mobile-nav a:hover{color:var(--t1);background:rgba(255,255,255,.04);}
+.mobile-nav .btn-gold{
+  margin-top:.5rem;text-align:center;justify-content:center;
+  background:var(--gg);color:#020407;border-radius:12px;
+  font-family:'Syne',sans-serif;font-weight:800;
+}
+
+/* ─────────────────────────────────────
+   NAV ACTIVE STATE
+───────────────────────────────────── */
+.nav-links a.nav-active{color:var(--g3);}
+
+/* ─────────────────────────────────────
+   FAQ SMOOTH ANIMATION
+───────────────────────────────────── */
+.faq-a{
+  font-size:.95rem;color:var(--t2);line-height:1.78;
+  max-height:0;overflow:hidden;
+  transition:max-height .38s cubic-bezier(.22,.68,0,1.2),
+             opacity .28s ease,
+             margin-top .28s ease;
+  opacity:0;margin-top:0;
+}
+.faq.open .faq-a{max-height:400px;opacity:1;margin-top:.9rem;}
+
+/* ─────────────────────────────────────
+   STAT COUNTER
+───────────────────────────────────── */
+.stat-n{will-change:contents;}
+
+/* ─────────────────────────────────────
+   FOCUS STATES (ACCESSIBILITY)
+───────────────────────────────────── */
+a:focus-visible,button:focus-visible,input:focus-visible,
+select:focus-visible,textarea:focus-visible{
+  outline:2px solid var(--g3);outline-offset:3px;border-radius:4px;
+}
+
+/* ─────────────────────────────────────
+   PERFORMANCE HINTS
+───────────────────────────────────── */
+.orb{will-change:transform;}
+.hero-visual{will-change:transform;}
+.ticker-inner{will-change:transform;}
+.reveal{will-change:opacity,transform;}
+
+/* ─────────────────────────────────────
+   TOOL CHECKMARKS — FIXED
+───────────────────────────────────── */
+.tool-includes li{
+  display:flex;align-items:center;gap:12px;
+  font-size:1rem;color:var(--t1);font-weight:500;
+}
+.tool-includes li::before{
+  content:'✓';
+  display:inline-flex;align-items:center;justify-content:center;
+  min-width:22px;width:22px;height:22px;
+  background:rgba(0,232,124,.1);
+  border:1px solid rgba(0,232,124,.28);
+  border-radius:50%;
+  color:var(--green);
+  font-size:.7rem;font-weight:900;
+  flex-shrink:0;
+}
+
+/* ─────────────────────────────────────
+   GENERATOR OUTPUT — BETTER EMPTY STATE
+───────────────────────────────────── */
+.gen-out{
+  background:var(--s2);border:1px solid rgba(255,255,255,.05);
+  border-radius:14px;padding:2rem;font-size:.9rem;line-height:1.9;
+  color:var(--t1);white-space:pre-wrap;
+  font-family:'Plus Jakarta Sans',sans-serif;min-height:420px;
+  transition:border-color .2s;
+}
+.gen-out:not(:empty){border-color:rgba(212,168,64,.12);}
+.gen-out-empty{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  min-height:420px;gap:1rem;text-align:center;
+}
+.gen-out-empty-icon{font-size:2.5rem;opacity:.35;}
+.gen-out-empty p{color:var(--t3);font-size:.95rem;max-width:320px;line-height:1.7;}
+
+/* ─────────────────────────────────────
+   MOBILE RESPONSIVE ADDITIONS
+───────────────────────────────────── */
+@media(max-width:640px){
+  .hamburger{display:flex;}
+  .nav-links{display:none;}
+  .mobile-nav{display:flex;}
+  #back-top{bottom:1.2rem;right:1.2rem;}
+  .tool-includes li{font-size:.95rem;}
+}
 input[type=date]{
   color-scheme:dark;
   cursor:pointer;
@@ -560,75 +733,101 @@ input[type=date]::-webkit-calendar-picker-indicator:hover{opacity:1;}
 /* ─────────────────────────────────────
    TOOLS / RESOURCES SECTION
 ───────────────────────────────────── */
-.tools-g{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem;}
+.tools-g{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem;align-items:start;}
 .tool-card{
-  background:var(--s1);border:1px solid rgba(255,255,255,.06);
-  border-radius:22px;padding:2.6rem;
+  background:var(--s1);
+  border:1px solid rgba(255,255,255,.06);
+  border-radius:22px;
+  padding:3rem 2.6rem 2.6rem;
   display:flex;flex-direction:column;
   position:relative;overflow:hidden;
   transition:transform .3s,border-color .3s,box-shadow .3s;
 }
-.tool-card::before{
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(145deg,rgba(212,168,64,.06) 0%,transparent 55%);
-  pointer-events:none;
+.tool-card::after{
+  content:'';position:absolute;top:0;left:2.6rem;right:2.6rem;
+  height:2px;background:linear-gradient(90deg,transparent,rgba(212,168,64,.25),transparent);
 }
-.tool-card:hover{transform:translateY(-6px);border-color:rgba(212,168,64,.18);box-shadow:0 28px 70px rgba(0,0,0,.45);}
-.tool-bg-n{
-  position:absolute;top:-15px;right:16px;
-  font-family:'Syne',sans-serif;font-size:8rem;font-weight:800;
-  color:rgba(212,168,64,.05);line-height:1;pointer-events:none;user-select:none;
+.tool-card:hover{transform:translateY(-6px);border-color:rgba(212,168,64,.2);box-shadow:0 32px 80px rgba(0,0,0,.5);}
+.tool-card.featured-tool{
+  background:linear-gradient(160deg,rgba(212,168,64,.09),var(--s1) 60%);
+  border:none;
+  box-shadow:0 0 0 1px rgba(212,168,64,.18),0 40px 80px rgba(0,0,0,.4);
+}
+.tool-card.featured-tool::after{
+  background:var(--gg);opacity:.7;left:0;right:0;border-radius:22px 22px 0 0;
 }
 .tool-pain{
-  display:inline-flex;align-items:center;gap:7px;
-  background:rgba(255,69,96,.08);border:1px solid rgba(255,69,96,.22);
-  border-radius:100px;padding:5px 16px;
-  font-size:.82rem;font-weight:700;color:var(--red);
-  letter-spacing:.07em;text-transform:uppercase;margin-bottom:1.3rem;width:fit-content;
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(255,69,96,.09);border:1px solid rgba(255,69,96,.25);
+  border-radius:100px;padding:6px 16px;
+  font-size:.78rem;font-weight:700;color:var(--red);
+  letter-spacing:.06em;text-transform:uppercase;
+  margin-bottom:1.6rem;width:fit-content;
 }
-.tool-pain::before{content:'';width:6px;height:6px;background:var(--red);border-radius:50%;opacity:.8;}
+.tool-pain::before{content:'';width:6px;height:6px;background:var(--red);border-radius:50%;}
 .tool-name{
-  font-family:'Syne',sans-serif;font-size:1.45rem;font-weight:800;
-  color:var(--t1);margin-bottom:.85rem;line-height:1.18;
+  font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;
+  color:var(--t1);margin-bottom:1rem;line-height:1.15;
 }
-.tool-body{font-size:1.05rem;color:var(--t2);line-height:1.85;margin-bottom:1.6rem;}
-.tool-includes{list-style:none;margin-bottom:1.8rem;display:flex;flex-direction:column;gap:.65rem;}
+.tool-body{
+  font-size:1.08rem;color:var(--t2);
+  line-height:1.8;margin-bottom:1.8rem;
+}
+.tool-includes{
+  list-style:none;
+  margin-bottom:2rem;
+  display:flex;flex-direction:column;gap:.8rem;
+}
 .tool-includes li{
-  display:flex;align-items:flex-start;gap:10px;
-  font-size:1rem;color:var(--t2);line-height:1.55;
+  display:flex;align-items:center;gap:12px;
+  font-size:1rem;color:var(--t1);font-weight:500;
 }
-.tool-includes li::before{content:'→';color:var(--g3);font-weight:700;flex-shrink:0;margin-top:1px;}
-.tool-footer{margin-top:auto;padding-top:1.8rem;border-top:1px solid rgba(255,255,255,.05);}
+.tool-includes li::before{
+  content:'✓';
+  width:22px;height:22px;
+  background:rgba(0,232,124,.1);border:1px solid rgba(0,232,124,.25);
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  color:var(--green);font-size:.75rem;font-weight:800;
+  flex-shrink:0;line-height:22px;text-align:center;
+}
+.tool-footer{
+  margin-top:auto;
+  padding-top:2rem;
+  border-top:1px solid rgba(255,255,255,.06);
+  display:flex;flex-direction:column;gap:1rem;
+}
 .tool-price{
-  font-family:'Syne',sans-serif;font-size:2.6rem;font-weight:800;
+  font-family:'Syne',sans-serif;font-size:2.8rem;font-weight:800;
   background:var(--gg);-webkit-background-clip:text;-webkit-text-fill-color:transparent;
-  background-clip:text;line-height:1;margin-bottom:.5rem;
+  background-clip:text;line-height:1;
 }
-.tool-price sub{font-size:1.05rem;-webkit-text-fill-color:var(--t2);color:var(--t2);font-weight:400;font-family:'Plus Jakarta Sans',sans-serif;letter-spacing:0;}
+.tool-price sub{
+  font-size:1rem;-webkit-text-fill-color:var(--t2);
+  color:var(--t2);font-weight:400;
+  font-family:'Plus Jakarta Sans',sans-serif;
+}
 .tool-early-tag{
   display:flex;align-items:center;gap:7px;
-  font-size:.88rem;font-weight:600;color:var(--green);
-  margin-bottom:1.1rem;
+  font-size:.85rem;font-weight:600;color:var(--green);
 }
-.tool-early-tag::before{content:'●';font-size:.5rem;animation:blink 2s infinite;}
+.tool-early-tag::before{content:'●';font-size:.45rem;animation:blink 2s infinite;}
 .tool-cta{
   display:flex;align-items:center;justify-content:center;gap:8px;
   width:100%;padding:1.05rem;border-radius:12px;
   font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;
-  border:1px solid var(--grim);color:var(--g3);background:transparent;
-  cursor:pointer;text-decoration:none;transition:all .25s;
+  border:1px solid var(--grim);color:var(--g3);
+  background:transparent;cursor:pointer;
+  text-decoration:none;transition:all .25s;
   position:relative;overflow:hidden;
 }
 .tool-cta::after{content:'';position:absolute;top:0;left:-120%;width:50%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.08),transparent);}
 .tool-cta:hover{background:var(--gdim);border-color:var(--g3);}
 .tool-cta:hover::after{animation:shimmer .55s ease;}
-.tool-card.featured-tool{
-  background:linear-gradient(150deg,rgba(212,168,64,.09),var(--s1));
-  border:none;
-  box-shadow:0 0 0 1px rgba(212,168,64,.15),0 40px 80px rgba(0,0,0,.4);
+.tool-card.featured-tool .tool-cta{
+  background:var(--gg);color:#020407;border:none;
+  box-shadow:0 8px 28px rgba(212,168,64,.3);
 }
-.tool-card.featured-tool .tool-cta{background:var(--gg);color:#020407;border:none;}
-.tool-card.featured-tool .tool-cta:hover{transform:translateY(-1px);box-shadow:0 10px 30px rgba(212,168,64,.4);}
+.tool-card.featured-tool .tool-cta:hover{transform:translateY(-1px);box-shadow:0 14px 40px rgba(212,168,64,.45);}
 @media(max-width:1000px){.tools-g{grid-template-columns:1fr;}}
 
 /* ─────────────────────────────────────
@@ -649,6 +848,8 @@ input[type=date]::-webkit-calendar-picker-indicator:hover{opacity:1;}
 </style>
 </head>
 <body>
+<div id="scroll-progress"></div>
+<button id="back-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 <div class="grain"></div>
 
 <!-- NAV -->
@@ -662,8 +863,18 @@ input[type=date]::-webkit-calendar-picker-indicator:hover{opacity:1;}
       <a href="#letters">605B Letters</a>
       <a href="#submit" class="btn btn-gold" style="font-size:.85rem;padding:.5rem 1.2rem;">Submit a Case</a>
     </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
+<div class="mobile-nav" id="mobileNav">
+  <a href="#why" onclick="closeMobileNav()">Why CFPB</a>
+  <a href="#pricing" onclick="closeMobileNav()">Pricing</a>
+  <a href="#tools" onclick="closeMobileNav()">Tools</a>
+  <a href="#letters" onclick="closeMobileNav()">605B Letters</a>
+  <a href="#submit" class="btn btn-gold" onclick="closeMobileNav()">Submit a Case →</a>
+</div>
 
 <!-- HERO -->
 <section class="hero">
@@ -951,7 +1162,12 @@ input[type=date]::-webkit-calendar-picker-indicator:hover{opacity:1;}
         </div>
       </div>
       <div class="gen-b" id="tab-output" style="display:none;">
-        <div class="gen-out" id="letter-output">Your 605B letter will appear here after you generate it.</div>
+        <div class="gen-out" id="letter-output">
+          <div class="gen-out-empty">
+            <div class="gen-out-empty-icon">📄</div>
+            <p>Your 605B block letter will appear here. Fill in the form and click Generate Letter.</p>
+          </div>
+        </div>
         <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.5rem;">
           <button class="btn btn-gold" onclick="copyLetter()">&#128203; Copy Letter</button>
           <button class="btn btn-outline" onclick="printLetter()">&#128424;&#65039; Print Letter</button>
@@ -964,82 +1180,71 @@ input[type=date]::-webkit-calendar-picker-indicator:hover{opacity:1;}
 </section>
 
 <!-- TOOLS FOR YOUR BUSINESS -->
-<section id="tools" class="section">
+<section id="tools" class="section bg2">
   <div class="wrap">
-    <div class="eyebrow reveal" style="text-align:center;">For Credit Repair Operators</div>
-    <h2 class="reveal" style="text-align:center;">The Tools Your Business <span class="grad">Needs to Survive Daily</span></h2>
-    <p class="reveal" style="text-align:center;max-width:580px;margin:0 auto 0;">Filing is one piece. These are the three things breaking your operations, costing you clients, and keeping you up at night — solved.</p>
+    <div class="eyebrow reveal" style="text-align:center;">Built for Credit Repair Operators</div>
+    <h2 class="reveal" style="text-align:center;">Three Things Breaking Your<br><span class="grad">Business Right Now</span></h2>
+    <p class="reveal" style="text-align:center;max-width:500px;margin:0 auto;">Beyond filing. These are the gaps costing you clients, exposing you legally, and stalling your cases every week.</p>
+
     <div class="tools-g">
 
-      <!-- CARD 1: CROA Compliance Kit -->
+      <!-- CARD 1 -->
       <div class="tool-card reveal">
-        <div class="tool-bg-n">01</div>
         <div class="tool-pain">Am I even legal?</div>
         <div class="tool-name">CROA Compliance Kit</div>
-        <p class="tool-body">You're taking money from clients, signing agreements, and making promises — and if your contracts don't include the exact federal disclosure language the FTC requires, you are exposed. It doesn't matter how good your results are. One complaint from the wrong client and the FTC becomes <em style="color:var(--t1);font-style:normal;">your</em> problem. Most credit repair businesses are running on paperwork they found online or copied from someone else. That's not protection — that's borrowed risk with your name on it.</p>
+        <p class="tool-body">One wrong contract and the FTC becomes your next client. These are the exact documents that keep you operating clean and protected.</p>
         <ul class="tool-includes">
-          <li>Client service agreement — fully CROA compliant</li>
-          <li>Required federal disclosure statement (exact FTC language)</li>
-          <li>Written client authorization form</li>
-          <li>Cancellation rights notice — no advance fee language</li>
-          <li>One-page CROA reference guide — what you can and cannot do</li>
+          <li>CROA-compliant client service agreement</li>
+          <li>Required federal disclosure statement</li>
+          <li>Authorization form + cancellation rights notice</li>
         </ul>
         <div class="tool-footer">
           <div class="tool-price">$97</div>
-          <div class="tool-early-tag">Early Access — Founding Member Pricing</div>
+          <div class="tool-early-tag">Early Access — Founding Pricing</div>
           <a href="mailto:hello@disputedispatch.com?subject=Early Access: CROA Compliance Kit" class="tool-cta">Reserve My Kit &rarr;</a>
         </div>
       </div>
 
-      <!-- CARD 2: Dispute Letter Library (featured) -->
+      <!-- CARD 2 — Featured -->
       <div class="tool-card featured-tool reveal d1">
-        <div class="tool-bg-n">02</div>
         <div class="tool-pain">I don't have a letter for this</div>
         <div class="tool-name">Complete Dispute Letter Library</div>
-        <p class="tool-body">A $300 collection and a verified inquiry are not the same situation. A goodwill request is not a method of verification demand. A debt validation letter is not a direct creditor dispute. When you send the wrong letter for the scenario in front of you, you get the wrong result — and your client loses faith in you before the process even had a chance to work. You need a different letter for every different fight.</p>
+        <p class="tool-body">Every situation needs a different letter. Using the wrong one gets the wrong result — and your client loses confidence in you.</p>
         <ul class="tool-includes">
-          <li>Method of Verification request — FCRA §611</li>
-          <li>Debt validation letter — FDCPA §809</li>
-          <li>Direct creditor dispute with legal citation</li>
-          <li>Goodwill removal request (late payments, old collections)</li>
-          <li>Pay-for-delete negotiation letter</li>
-          <li>Unauthorized inquiry dispute — FCRA §604</li>
-          <li>Outdated information removal — 7-year rule</li>
-          <li>Mixed file dispute letter</li>
+          <li>Method of Verification — FCRA &sect;611</li>
+          <li>Debt validation, goodwill &amp; pay-for-delete</li>
+          <li>Unauthorized inquiry + direct creditor dispute</li>
+          <li>Outdated info, mixed file &amp; more</li>
         </ul>
         <div class="tool-footer">
           <div class="tool-price">$147</div>
-          <div class="tool-early-tag">Early Access — Founding Member Pricing</div>
+          <div class="tool-early-tag">Early Access — Founding Pricing</div>
           <a href="mailto:hello@disputedispatch.com?subject=Early Access: Dispute Letter Library" class="tool-cta">Reserve My Library &rarr;</a>
         </div>
       </div>
 
-      <!-- CARD 3: Round 2 Escalation -->
+      <!-- CARD 3 -->
       <div class="tool-card reveal d2">
-        <div class="tool-bg-n">03</div>
-        <div class="tool-pain">The bureau said "verified"</div>
+        <div class="tool-pain">Bureau said "verified." Now what?</div>
         <div class="tool-name">Round 2 Escalation Service</div>
-        <p class="tool-body">Verified is not the end. It is the beginning of round two. Bureau verification is often nothing more than a computer matching data to itself — it does not mean the item is accurate, and it does not mean you stop. FCRA §611 gives your client the legal right to demand exactly how the item was verified. Most credit repair businesses stop at round one and watch clients walk out the door. We file the escalation for you before that happens.</p>
+        <p class="tool-body">Verified is not the end — it's round two. We file the escalation on your behalf so your client stays instead of walks.</p>
         <ul class="tool-includes">
-          <li>Method of Verification request filed on your behalf</li>
-          <li>Direct creditor dispute — FCRA §611 language</li>
-          <li>Legal demand letter citing failure to investigate</li>
-          <li>Bureau follow-up tracking included</li>
-          <li>Attaches to any existing case — no new intake needed</li>
+          <li>MOV request + FCRA &sect;611 demand filed for you</li>
+          <li>Direct creditor dispute letter included</li>
+          <li>Attaches to any existing case instantly</li>
         </ul>
         <div class="tool-footer">
-          <div class="tool-price">$75 <sub>/ case add-on</sub></div>
-          <div class="tool-early-tag">Included Free in Monthly Retainer</div>
+          <div class="tool-price">$75 <sub>/ case</sub></div>
+          <div class="tool-early-tag">Included free in Monthly Retainer</div>
           <a href="mailto:hello@disputedispatch.com?subject=Round 2 Escalation: Add to My Case" class="tool-cta">Add to a Case &rarr;</a>
         </div>
       </div>
 
     </div>
 
-    <!-- BOTTOM CALLOUT -->
     <div class="xpl-cta reveal" style="margin-top:3rem;margin-bottom:0;">
-      <span style="font-size:1.2rem;flex-shrink:0;margin-top:2px;">&#128161;</span>
-      <p><strong>Founding member pricing ends when each product launches.</strong> Reserve now and lock in the early access rate — you'll be first in line and first to get results. Questions? <a href="mailto:hello@disputedispatch.com" style="color:var(--g3);text-decoration:none;">Email us directly.</a></p>
+      <span style="font-size:1.2rem;flex-shrink:0;">&#128274;</span>
+      <p><strong>Founding member pricing locks in when you reserve.</strong> These ship to early access members first. <a href="mailto:hello@disputedispatch.com" style="color:var(--g3);text-decoration:none;">Questions? Email us directly.</a></p>
     </div>
   </div>
 </section>
@@ -1142,14 +1347,44 @@ input[type=date]::-webkit-calendar-picker-indicator:hover{opacity:1;}
 <!-- FOOTER -->
 <footer>
   <div class="wrap">
-    <div class="foot-i">
-      <div>
-        <div class="logo" style="margin-bottom:.35rem;">Dispute<em>Dispatch</em></div>
-        <p>&copy; 2026 DisputeDispatch &middot; B2B Credit Repair Automation</p>
+    <div class="foot-top">
+      <div class="foot-brand">
+        <div class="logo" style="margin-bottom:.5rem;font-size:1.5rem;">Dispute<em>Dispatch</em></div>
+        <p style="font-size:.9rem;max-width:280px;line-height:1.7;">Same-day CFPB filing for credit repair businesses. You deliver results. We stay invisible.</p>
+        <div style="display:flex;gap:.6rem;margin-top:1.2rem;flex-wrap:wrap;">
+          <span class="foot-badge">&#128274; White Label</span>
+          <span class="foot-badge">&#9889; Same Day</span>
+          <span class="foot-badge">&#9878;&#65039; FCRA Compliant</span>
+        </div>
       </div>
+      <div class="foot-cols">
+        <div>
+          <div class="foot-col-title">Services</div>
+          <a href="#pricing">Bureau Package</a>
+          <a href="#pricing">Full Package</a>
+          <a href="#pricing">Monthly Retainer</a>
+          <a href="#tools">CROA Compliance Kit</a>
+          <a href="#tools">Letter Library</a>
+        </div>
+        <div>
+          <div class="foot-col-title">Resources</div>
+          <a href="#letters">605B Generator</a>
+          <a href="#why">Why CFPB Works</a>
+          <a href="#how">How It Works</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div>
+          <div class="foot-col-title">Contact</div>
+          <a href="mailto:hello@disputedispatch.com">hello@disputedispatch.com</a>
+          <a href="#submit">Submit a Case</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <p>&copy; 2026 DisputeDispatch &middot; B2B Credit Repair Automation</p>
       <div class="foot-links">
-        <a href="#">Terms</a>
-        <a href="#">Privacy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Privacy Policy</a>
         <a href="mailto:hello@disputedispatch.com">Contact</a>
       </div>
     </div>
@@ -1222,11 +1457,78 @@ input[type=date]::-webkit-calendar-picker-indicator:hover{opacity:1;}
 </div>
 
 <script>
-// SCROLL REVEAL
-const ro=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');ro.unobserve(e.target);}});},{threshold:.07});
-document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
+// ─── SCROLL PROGRESS BAR ────────────────────────────────────────────────────
+const progressBar = document.getElementById('scroll-progress');
+window.addEventListener('scroll', () => {
+  const s = document.documentElement;
+  const pct = (s.scrollTop / (s.scrollHeight - s.clientHeight)) * 100;
+  progressBar.style.width = pct + '%';
+}, {passive:true});
 
-// POPUP
+// ─── BACK TO TOP ─────────────────────────────────────────────────────────────
+const backTop = document.getElementById('back-top');
+window.addEventListener('scroll', () => {
+  backTop.classList.toggle('show', window.scrollY > 600);
+}, {passive:true});
+
+// ─── MOBILE MENU ─────────────────────────────────────────────────────────────
+const hamburger = document.getElementById('hamburger');
+const mobileNav = document.getElementById('mobileNav');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('open');
+  mobileNav.classList.toggle('open');
+});
+function closeMobileNav(){
+  hamburger.classList.remove('open');
+  mobileNav.classList.remove('open');
+}
+
+// ─── SCROLL REVEAL ───────────────────────────────────────────────────────────
+const ro = new IntersectionObserver(es => {
+  es.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); ro.unobserve(e.target); }});
+}, {threshold:.07});
+document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+
+// ─── STAT COUNTER ANIMATION ──────────────────────────────────────────────────
+function animateCounter(el){
+  const target = +el.dataset.target;
+  const suffix = el.dataset.suffix || '';
+  const duration = 1800;
+  const start = performance.now();
+  const easeOut = t => 1 - Math.pow(1-t, 3);
+  (function tick(now){
+    const progress = Math.min((now - start) / duration, 1);
+    const value = Math.round(easeOut(progress) * target);
+    el.textContent = value + suffix;
+    if(progress < 1) requestAnimationFrame(tick);
+    else el.textContent = target + suffix;
+  })(start);
+}
+const statObs = new IntersectionObserver(es => {
+  es.forEach(e => {
+    if(e.isIntersecting && e.target.dataset.target){
+      animateCounter(e.target);
+      statObs.unobserve(e.target);
+    }
+  });
+}, {threshold:.5});
+document.querySelectorAll('.stat-n[data-target]').forEach(el => statObs.observe(el));
+
+// ─── ACTIVE NAV ON SCROLL ─────────────────────────────────────────────────────
+const sections = document.querySelectorAll('section[id], div[id="pricing"]');
+const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+const navObs = new IntersectionObserver(es => {
+  es.forEach(e => {
+    if(e.isIntersecting){
+      navLinks.forEach(l => l.classList.remove('nav-active'));
+      const active = document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
+      if(active) active.classList.add('nav-active');
+    }
+  });
+}, {rootMargin:'-40% 0px -50% 0px'});
+document.querySelectorAll('section[id]').forEach(s => navObs.observe(s));
+
+// ─── POPUP ────────────────────────────────────────────────────────────────────
 function openPopup(){if(sessionStorage.getItem('ps'))return;document.getElementById('popup').classList.add('visible');sessionStorage.setItem('ps','1');}
 function closePopup(){document.getElementById('popup').classList.remove('visible');}
 document.getElementById('popup').addEventListener('click',function(e){if(e.target===this)closePopup();});
@@ -1240,24 +1542,21 @@ async function submitPopup(e){
   }catch{b.textContent='Send Me the Templates \u2192';b.disabled=false;}
 }
 
-// BUREAU ADDRESSES
+// ─── BUREAU ADDRESSES ─────────────────────────────────────────────────────────
 const BA={Experian:'P.O. Box 9554, Allen, TX 75013',TransUnion:'P.O. Box 2000, Chester, PA 19016',Equifax:'P.O. Box 740256, Atlanta, GA 30374'};
 function autofillAddr(){document.getElementById('g-bureau-addr').value=BA[document.getElementById('g-bureau').value]||'';}
-autofillAddr(); // populate on load
+autofillAddr();
 
-// TABS
+// ─── TABS ─────────────────────────────────────────────────────────────────────
 function switchTab(t){
   document.getElementById('tab-input').style.display=t==='input'?'block':'none';
   document.getElementById('tab-output').style.display=t==='output'?'block':'none';
   document.querySelectorAll('.gen-tab').forEach((x,i)=>x.classList.toggle('active',(t==='input'&&i===0)||(t==='output'&&i===1)));
 }
 
-// ─── 605B GENERATOR ────────────────────────────────────────────────────────
-
-// Store pending letter data until lead is captured
+// ─── 605B GENERATOR ───────────────────────────────────────────────────────────
 let _pendingLetterData = null;
 
-// Format YYYY-MM-DD → "Month D, YYYY"
 function formatDateForLetter(val){
   if(!val)return'';
   const[y,m,d]=val.split('-').map(Number);
@@ -1265,7 +1564,6 @@ function formatDateForLetter(val){
   return months[m-1]+' '+d+', '+y;
 }
 
-// Step 1 — validate form fields, then open lead gate
 function generateLetter(){
   const n=document.getElementById('g-name').value.trim();
   const d=document.getElementById('g-date').value;
@@ -1276,128 +1574,72 @@ function generateLetter(){
     alert('Please fill in all required fields:\n• Client Full Name\n• Letter Date\n• Client Full Address\n• FTC Report #\n• Fraudulent Items to Block');
     return;
   }
-  // Stash all form values
-  _pendingLetterData={
-    n, d,
-    a, f,
-    b:document.getElementById('g-bureau').value,
-    ba:document.getElementById('g-bureau-addr').value.trim(),
-    it,
-    dob:document.getElementById('g-dob').value.trim(),
-    ssn:document.getElementById('g-ssn').value.trim()
-  };
-  // Open lead gate
+  _pendingLetterData={n,d,a,f,b:document.getElementById('g-bureau').value,ba:document.getElementById('g-bureau-addr').value.trim(),it,dob:document.getElementById('g-dob').value.trim(),ssn:document.getElementById('g-ssn').value.trim()};
   document.getElementById('lead-gate').classList.add('visible');
 }
 
-// Step 2 — called after lead is captured; actually build the letter
 function doGenerateLetter(){
   const{n,d,a,f,b,ba,it,dob,ssn}=_pendingLetterData;
   const dateStr=formatDateForLetter(d);
   const id=[dob?'Date of Birth: '+dob:'',ssn?'SSN (Last 4): XXX-XX-'+ssn:''].filter(Boolean).join('\n');
   const items=it.split('\n').map(l=>l.trim()).filter(Boolean).map(l=>'\u2022 '+l.replace(/^[-\u2022*]\s*/,'')).join('\n');
-  const letter=
-    n+'\n'+a+(id?'\n'+id:'')+'\n\n'+
-    dateStr+'\n\n'+
-    b+'\n'+ba+'\n\n'+
-    'RE: FORMAL REQUEST TO BLOCK FRAUDULENT INFORMATION PURSUANT TO FCRA \u00a7 605B\n'+
-    '    FTC Identity Theft Report Number: '+f+'\n\n'+
-    'To Whom It May Concern:\n\n'+
-    'My name is '+n+'. I am writing to formally request that you immediately block the fraudulent information listed below from my credit file, pursuant to Section 605B of the Fair Credit Reporting Act, 15 U.S.C. \u00a7 1681c-2.\n\n'+
-    'I am a victim of identity theft. My FTC Identity Theft Report Number is '+f+', on file at identitytheft.gov.\n\n'+
-    'The following items on my '+b+' credit report are the direct result of identity theft:\n\n'+
-    items+'\n\n'+
-    'Under FCRA \u00a7 605B(a), you are legally required to block this information within 4 business days of receipt. I expect written confirmation of the block within 5 business days.\n\n'+
-    'Sincerely,\n\n\n'+n+'\n'+a+'\n\n'+
-    'Enclosures:\n'+
-    '\u2022 FTC Identity Theft Report #'+f+'\n'+
-    '\u2022 Copy of government-issued photo ID\n\n'+
-    '\u2500'.repeat(42)+'\n'+
-    'LEGAL NOTICE: Failure to comply within the statutory 4-business-day period may subject your agency to liability under 15 U.S.C. \u00a7 1681n or \u00a7 1681o, including actual damages, statutory damages up to $1,000 per violation, and attorney\'s fees.';
-
-  document.getElementById('letter-output').textContent=letter;
-  // Pre-load print frame
+  const letter=n+'\n'+a+(id?'\n'+id:'')+'\n\n'+dateStr+'\n\n'+b+'\n'+ba+'\n\nRE: FORMAL REQUEST TO BLOCK FRAUDULENT INFORMATION PURSUANT TO FCRA \u00a7 605B\n    FTC Identity Theft Report Number: '+f+'\n\nTo Whom It May Concern:\n\nMy name is '+n+'. I am writing to formally request that you immediately block the fraudulent information listed below from my credit file, pursuant to Section 605B of the Fair Credit Reporting Act, 15 U.S.C. \u00a7 1681c-2.\n\nI am a victim of identity theft. My FTC Identity Theft Report Number is '+f+', on file at identitytheft.gov.\n\nThe following items on my '+b+' credit report are the direct result of identity theft:\n\n'+items+'\n\nUnder FCRA \u00a7 605B(a), you are legally required to block this information within 4 business days of receipt. I expect written confirmation of the block within 5 business days.\n\nSincerely,\n\n\n'+n+'\n'+a+'\n\nEnclosures:\n\u2022 FTC Identity Theft Report #'+f+'\n\u2022 Copy of government-issued photo ID\n\n'+'\u2500'.repeat(42)+'\nLEGAL NOTICE: Failure to comply within the statutory 4-business-day period may subject your agency to liability under 15 U.S.C. \u00a7 1681n or \u00a7 1681o, including actual damages, statutory damages up to $1,000 per violation, and attorney\'s fees.';
+  const out = document.getElementById('letter-output');
+  out.innerHTML = '';
+  out.textContent = letter;
   document.getElementById('print-frame').textContent=letter;
   switchTab('output');
   document.querySelector('.gen-wrap').scrollIntoView({behavior:'smooth',block:'start'});
 }
 
-// Copy letter
 function copyLetter(){
   const txt=document.getElementById('letter-output').textContent;
-  if(!txt||txt.startsWith('Your 605B')){alert('Generate a letter first.');return;}
+  if(!txt||txt.includes('will appear here')){alert('Generate a letter first.');return;}
   navigator.clipboard.writeText(txt).then(()=>{
     const c=document.getElementById('copy-confirm');c.style.display='block';setTimeout(()=>c.style.display='none',3000);
   });
 }
 
-// Print letter
 function printLetter(){
   const txt=document.getElementById('letter-output').textContent;
-  if(!txt||txt.startsWith('Your 605B')){alert('Generate a letter first.');return;}
+  if(!txt||txt.includes('will appear here')){alert('Generate a letter first.');return;}
   document.getElementById('print-frame').textContent=txt;
   window.print();
 }
 
-// ─── LEAD GATE LOGIC ───────────────────────────────────────────────────────
-
+// ─── LEAD GATE ────────────────────────────────────────────────────────────────
 const emailRe=/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
 document.getElementById('leadGateForm').addEventListener('submit',async function(e){
   e.preventDefault();
-
-  const nameVal=document.getElementById('lg-name').value.trim();
   const emailInp=document.getElementById('lg-email');
   const emailVal=emailInp.value.trim();
   const emailErr=document.getElementById('lg-email-err');
-  const phoneVal=document.getElementById('lg-phone').value.trim();
-
-  // Validate email
   if(!emailRe.test(emailVal)){
-    emailInp.classList.add('err-inp');
-    emailErr.classList.add('show');
-    emailInp.focus();
-    return;
+    emailInp.classList.add('err-inp');emailErr.classList.add('show');emailInp.focus();return;
   }
-  emailInp.classList.remove('err-inp');
-  emailErr.classList.remove('show');
-
+  emailInp.classList.remove('err-inp');emailErr.classList.remove('show');
   const btn=e.target.querySelector('.lead-sub');
   btn.textContent='Generating...';btn.disabled=true;
-
-  // Non-blocking lead capture → formspree
   const fd=new FormData();
-  fd.append('lead_name',nameVal);
+  fd.append('lead_name',document.getElementById('lg-name').value.trim());
   fd.append('lead_email',emailVal);
-  if(phoneVal)fd.append('lead_phone',phoneVal);
+  const phone=document.getElementById('lg-phone').value.trim();
+  if(phone)fd.append('lead_phone',phone);
   fd.append('source','letter_generator_605b');
   fetch('https://formspree.io/f/maqvkvda',{method:'POST',body:fd,headers:{Accept:'application/json'}}).catch(()=>{});
-
-  // Close modal
   document.getElementById('lead-gate').classList.remove('visible');
-
-  // Generate the letter
   doGenerateLetter();
-
-  // Reset button + form for next time
   btn.textContent='📄 Generate My Letter →';btn.disabled=false;
   e.target.reset();
 });
 
-// Close lead gate if clicking outside the box (not blocking UX)
-document.getElementById('lead-gate').addEventListener('click',function(e){
-  if(e.target===this)this.classList.remove('visible');
-});
-
-// Live email validation feedback
+document.getElementById('lead-gate').addEventListener('click',function(e){if(e.target===this)this.classList.remove('visible');});
 document.getElementById('lg-email').addEventListener('input',function(){
-  if(emailRe.test(this.value.trim())){
-    this.classList.remove('err-inp');
-    document.getElementById('lg-email-err').classList.remove('show');
-  }
+  if(emailRe.test(this.value.trim())){this.classList.remove('err-inp');document.getElementById('lg-email-err').classList.remove('show');}
 });
 
-// ─── ROI CALCULATOR ────────────────────────────────────────────────────────
+// ─── ROI CALCULATOR ───────────────────────────────────────────────────────────
 function calcROI(){
   const cases=+document.getElementById('sl-cases').value;
   const charge=+document.getElementById('sl-charge').value;
@@ -1408,15 +1650,24 @@ function calcROI(){
   document.getElementById('sv-hrs').textContent=hrs;
   document.getElementById('sv-rate').textContent='$'+rate;
   const th=cases*hrs;const tc=cases*hrs*rate;const dd=cases*150;const gain=tc-dd;const extra=Math.floor(th/3);
-  document.getElementById('r-hrs').textContent=th+' hrs';
-  document.getElementById('r-tc').textContent='$'+tc.toLocaleString();
-  document.getElementById('r-dd').textContent='$'+dd.toLocaleString();
-  document.getElementById('r-gain').textContent=(gain>0?'+':'')+' $'+Math.abs(gain).toLocaleString();
+  // Animate result values
+  ['r-hrs','r-tc','r-dd','r-gain'].forEach(id => {
+    const el = document.getElementById(id);
+    el.style.transition = 'transform .2s, opacity .2s';
+    el.style.opacity = '0'; el.style.transform = 'translateY(6px)';
+    setTimeout(() => {
+      if(id==='r-hrs') el.textContent=th+' hrs';
+      else if(id==='r-tc') el.textContent='$'+tc.toLocaleString();
+      else if(id==='r-dd') el.textContent='$'+dd.toLocaleString();
+      else el.textContent=(gain>0?'+':'')+' $'+Math.abs(gain).toLocaleString();
+      el.style.opacity='1';el.style.transform='translateY(0)';
+    }, 60);
+  });
   document.getElementById('r-sub').textContent=gain>0?'Enough time to onboard '+extra+' more client'+(extra!==1?'s':'')+' at $'+charge.toLocaleString()+' = $'+(extra*charge).toLocaleString()+' new revenue':'Adjust your hourly rate \u2014 your time is worth more';
 }
 calcROI();
 
-// FAQ
+// ─── FAQ ──────────────────────────────────────────────────────────────────────
 document.querySelectorAll('.faq-q').forEach(q=>{
   q.addEventListener('click',()=>{
     const i=q.closest('.faq');const w=i.classList.contains('open');
@@ -1425,7 +1676,7 @@ document.querySelectorAll('.faq-q').forEach(q=>{
   });
 });
 
-// MAIN FORM
+// ─── MAIN FORM ────────────────────────────────────────────────────────────────
 document.getElementById('mainForm').addEventListener('submit',async(e)=>{
   e.preventDefault();const btn=e.target.querySelector('.sub-btn');
   btn.textContent='Submitting...';btn.disabled=true;
