@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DisputeDispatch — CFPB Filing Automation for Credit Repair Businesses</title>
+<meta name="description" content="We file CFPB complaints for your credit repair clients in 24 hours using automation. B2B subcontracting for credit repair businesses. Bureau + creditor packages starting at $75.">
+<meta property="og:title" content="DisputeDispatch — CFPB Automation for Credit Repair Pros">
+<meta property="og:description" content="Send us the case. We file every CFPB complaint same day. You deliver results to your client.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #07090d;
+  --bg2: #0d1117;
+  --bg3: #131a22;
+  --bg4: #1a2330;
+  --gold: #c9a84c;
+  --gold-light: #e8c970;
+  --gold-dim: rgba(201,168,76,0.12);
+  --green: #22c97a;
+  --red: #e05555;
+  --text: #f0f4f8;
+  --muted: #8fa0b0;
+  --border: rgba(201,168,76,0.18);
+  --border2: rgba(201,168,76,0.45);
+  --radius: 12px;
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 19px; line-height: 1.75; overflow-x: hidden; }
+h1,h2,h3,h4 { font-family: 'Syne', sans-serif; line-height: 1.1; }
+h1 { font-size: clamp(2.8rem,5.5vw,5rem); font-weight: 800; letter-spacing: -2px; }
+h2 { font-size: clamp(2rem,3.5vw,3rem); font-weight: 800; letter-spacing: -1px; margin-bottom: 0.8rem; }
+h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.4rem; }
+p { color: var(--muted); }
+strong { color: var(--text); font-weight: 500; }
+.wrap { max-width: 1160px; margin: 0 auto; padding: 0 5%; }
+.section { padding: 70px 0; }
+.eyebrow { display: inline-block; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.9rem; }
+.btn { display: inline-block; font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem; padding: 0.85rem 1.8rem; border-radius: 8px; text-decoration: none; transition: all 0.2s; cursor: pointer; border: none; letter-spacing: 0.02em; }
+.btn-gold { background: var(--gold); color: #07090d; }
+.btn-gold:hover { background: var(--gold-light); transform: translateY(-1px); box-shadow: 0 8px 28px rgba(201,168,76,0.28); }
+.btn-outline { background: transparent; border: 1px solid var(--border2) !important; color: var(--gold); }
+.btn-outline:hover { background: var(--gold-dim); }
+.btn-ghost { background: transparent; border: 1px solid rgba(255,255,255,0.1); color: var(--muted); }
+.btn-ghost:hover { border-color: var(--border2); color: var(--text); }
+.btn-full { width: 100%; text-align: center; display: block; }
+
+/* NAV */
+nav { position: sticky; top: 0; z-index: 200; height: 64px; background: rgba(7,9,13,0.94); backdrop-filter: blur(18px); border-bottom: 1px solid var(--border); display: flex; align-items: center; }
+.nav-inner { width: 100%; max-width: 1160px; margin: 0 auto; padding: 0 5%; display: flex; align-items: center; justify-content: space-between; }
+.logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.25rem; letter-spacing: -0.5px; color: var(--text); text-decoration: none; }
+.logo em { font-style: normal; color: var(--gold); }
+.nav-links { display: flex; align-items: center; gap: 0.3rem; }
+.nav-links a { color: var(--muted); text-decoration: none; font-size: 1.05rem; font-weight: 500; padding: 0.4rem 0.8rem; border-radius: 6px; transition: color 0.2s; }
+.nav-links a:hover { color: var(--text); }
+
+/* HERO */
+.hero { padding: 110px 0 90px; position: relative; overflow: hidden; }
+.hero::after { content: ''; position: absolute; top: -200px; right: -200px; width: 700px; height: 700px; background: radial-gradient(circle, rgba(201,168,76,0.05) 0%, transparent 65%); pointer-events: none; }
+.hero-tag { display: inline-flex; align-items: center; gap: 8px; background: var(--gold-dim); border: 1px solid var(--border2); border-radius: 100px; padding: 5px 14px; font-size: 0.78rem; font-weight: 600; color: var(--gold); letter-spacing: 0.07em; text-transform: uppercase; margin-bottom: 1.8rem; }
+.hero-tag::before { content: ''; width: 6px; height: 6px; background: var(--green); border-radius: 50%; animation: blink 2s infinite; }
+@keyframes blink { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:0.4; transform:scale(1.5); } }
+.hero h1 { max-width: 800px; margin-bottom: 1.4rem; }
+.hero h1 em { font-style: normal; color: var(--gold); }
+.hero-sub { font-size: 1.35rem; max-width: 520px; margin-bottom: 2.2rem; color: var(--muted); font-weight: 400; }
+.hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; margin-bottom: 3rem; }
+.hero-proof { display: flex; align-items: center; gap: 1.5rem; padding-top: 2rem; border-top: 1px solid var(--border); flex-wrap: wrap; }
+.proof-item { display: flex; align-items: center; gap: 8px; font-size: 1rem; color: var(--muted); }
+.proof-item span { color: var(--green); }
+
+/* STATS */
+.stats-strip { background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 2.2rem 0; }
+.stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+.stat { text-align: center; }
+.stat-n { font-family: 'Syne', sans-serif; font-size: 2.6rem; font-weight: 800; color: var(--gold); line-height: 1; margin-bottom: 0.35rem; }
+.stat-l { font-size: 1.05rem; color: var(--muted); }
+
+/* WHY CFPB */
+.why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+.why-left p { margin-bottom: 1.2rem; font-size: 1.03rem; line-height: 1.78; }
+.cfpb-step { background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.4rem 1.6rem; margin-bottom: 0.8rem; position: relative; overflow: hidden; }
+.cfpb-step::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--gold); }
+.cfpb-step-num { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.3rem; }
+.cfpb-step h4 { font-family: 'Syne', sans-serif; font-size: 0.98rem; color: var(--text); margin-bottom: 0.35rem; }
+.cfpb-step p { font-size: 1.05rem; line-height: 1.65; }
+.law-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(34,201,122,0.1); border: 1px solid rgba(34,201,122,0.3); border-radius: 6px; padding: 5px 12px; font-size: 0.82rem; font-weight: 600; color: var(--green); margin-top: 0.8rem; }
+.vs-table { width: 100%; border-collapse: collapse; margin-top: 1.8rem; }
+.vs-table th { font-family: 'Syne', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.7rem 1rem; text-align: left; border-bottom: 1px solid var(--border); }
+.vs-table th:first-child { color: var(--muted); }
+.vs-table th:nth-child(2) { color: var(--muted); }
+.vs-table th:last-child { color: var(--green); }
+.vs-table td { padding: 0.75rem 1rem; font-size: 1.05rem; border-bottom: 1px solid rgba(255,255,255,0.04); color: var(--muted); }
+.check { color: var(--green) !important; font-weight: 600; }
+.cross { color: var(--red) !important; }
+
+/* HOW IT WORKS */
+.steps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5px; background: var(--border); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; margin-top: 3rem; }
+.step { background: var(--bg2); padding: 2.2rem; }
+.step-n { font-family: 'Syne', sans-serif; font-size: 2.8rem; font-weight: 800; color: rgba(201,168,76,0.1); line-height: 1; margin-bottom: 1rem; }
+.step-icon { font-size: 1.5rem; margin-bottom: 0.8rem; }
+.step p { font-size: 1.05rem; color: var(--muted); line-height: 1.65; }
+
+/* PRICING */
+.pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+.plan { background: var(--bg2); border: 1px solid var(--border); border-radius: 16px; padding: 2.2rem; position: relative; transition: border-color 0.25s, transform 0.25s; }
+.plan:hover { border-color: var(--border2); transform: translateY(-3px); }
+.plan.hot { border-color: var(--gold); background: linear-gradient(145deg, rgba(201,168,76,0.06), var(--bg2)); }
+.plan-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--gold); color: #07090d; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 14px; border-radius: 100px; white-space: nowrap; }
+.plan-name { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.7rem; }
+.plan-price { font-family: 'Syne', sans-serif; font-size: 3rem; font-weight: 800; letter-spacing: -2px; line-height: 1; }
+.plan-price sub { font-size: 1.05rem; color: var(--muted); letter-spacing: 0; font-weight: 400; }
+.plan-per { font-size: 1.05rem; color: var(--muted); margin-bottom: 1.8rem; padding-bottom: 1.8rem; border-bottom: 1px solid var(--border); margin-top: 0.3rem; }
+.plan ul { list-style: none; margin-bottom: 2rem; }
+.plan ul li { display: flex; align-items: flex-start; gap: 10px; font-size: 1.05rem; color: var(--muted); padding: 0.42rem 0; }
+.plan ul li::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+.stripe-note { text-align: center; font-size: 1rem; color: var(--muted); margin-top: 0.8rem; }
+
+/* 605B EXPLAINER */
+.explainer-grid { display: grid; grid-template-columns: 1fr 1px 1fr; gap: 2.5rem; align-items: start; margin: 2.5rem 0 1.5rem; background: var(--bg2); border: 1px solid var(--border); border-radius: 16px; padding: 2.2rem; }
+.explainer-label { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.9rem; }
+.explainer-what p { font-size: 1rem; line-height: 1.75; color: var(--muted); }
+.explainer-divider { background: var(--border); width: 1px; height: 100%; min-height: 200px; }
+.explainer-list { list-style: none; display: flex; flex-direction: column; gap: 1.1rem; }
+.explainer-list li { display: flex; align-items: flex-start; gap: 0.9rem; font-size: 1rem; color: var(--muted); line-height: 1.6; }
+.el-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; }
+.explainer-callout { background: var(--gold-dim); border: 1px solid var(--border2); border-radius: 12px; padding: 1.2rem 1.6rem; margin-bottom: 2.5rem; display: flex; align-items: flex-start; gap: 0.9rem; }
+.ec-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 2px; }
+.explainer-callout p { font-size: 1rem; line-height: 1.65; color: var(--muted); margin: 0; }
+@media (max-width: 760px) { .explainer-grid { grid-template-columns: 1fr; } .explainer-divider { display: none; } }
+
+/* 605B GENERATOR */
+.generator-wrap { background: var(--bg2); border: 1px solid var(--border); border-radius: 20px; overflow: hidden; margin-top: 3rem; }
+.gen-tabs { display: flex; border-bottom: 1px solid var(--border); }
+.gen-tab { flex: 1; padding: 1rem; text-align: center; font-family: 'Syne', sans-serif; font-size: 0.85rem; font-weight: 700; letter-spacing: 0.04em; cursor: pointer; background: transparent; border: none; color: var(--muted); transition: all 0.2s; border-bottom: 2px solid transparent; margin-bottom: -1px; }
+.gen-tab.active { color: var(--gold); border-bottom-color: var(--gold); background: var(--gold-dim); }
+.gen-body { padding: 2.5rem; }
+.gen-form { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.gen-full { grid-column: 1 / -1; }
+.gen-output { background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius); padding: 2rem; font-size: 0.92rem; line-height: 1.88; color: var(--text); white-space: pre-wrap; font-family: 'DM Sans', sans-serif; min-height: 420px; }
+
+/* FORMS */
+.fg { display: flex; flex-direction: column; gap: 0.45rem; }
+label { font-size: 0.9rem; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: var(--muted); }
+.req { color: var(--gold); margin-left: 2px; }
+input, select, textarea { background: var(--bg3); border: 1px solid var(--border); border-radius: 8px; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 0.97rem; padding: 0.75rem 1rem; outline: none; transition: border-color 0.2s; width: 100%; }
+input:focus, select:focus, textarea:focus { border-color: var(--gold); }
+select option { background: var(--bg3); }
+textarea { resize: vertical; min-height: 90px; line-height: 1.6; }
+.checks { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+.check-item { display: flex; align-items: center; gap: 8px; background: var(--bg3); border: 1px solid var(--border); border-radius: 8px; padding: 0.6rem 0.9rem; cursor: pointer; font-size: 0.95rem; transition: border-color 0.2s; }
+.check-item:hover { border-color: var(--border2); }
+.check-item input[type=checkbox] { width: 16px; height: 16px; accent-color: var(--gold); flex-shrink: 0; padding: 0; }
+hr.div { border: none; border-top: 1px solid var(--border); margin: 1.8rem 0; }
+.fsec { font-family: 'Syne', sans-serif; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem; display: flex; align-items: center; gap: 0.8rem; }
+.fsec::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+.form-wrap { background: var(--bg2); border: 1px solid var(--border); border-radius: 20px; padding: 2.8rem; max-width: 840px; margin: 3rem auto 0; }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; }
+.form-full { grid-column: 1 / -1; }
+.submit-btn { width: 100%; padding: 1.05rem; background: var(--gold); color: #07090d; border: none; border-radius: 10px; font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; letter-spacing: 0.03em; cursor: pointer; transition: all 0.2s; margin-top: 1.2rem; }
+.submit-btn:hover { background: var(--gold-light); box-shadow: 0 8px 28px rgba(201,168,76,0.22); }
+.submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.form-note { text-align: center; font-size: 1rem; color: var(--muted); margin-top: 0.9rem; line-height: 1.6; }
+.success-msg { display: none; background: rgba(34,201,122,0.1); border: 1px solid rgba(34,201,122,0.3); border-radius: 10px; padding: 1.5rem; text-align: center; color: var(--green); font-weight: 500; margin-top: 1rem; font-size: 1.05rem; }
+
+/* FAQ */
+.faq-wrap { max-width: 720px; margin: 0 auto; }
+.faq { border-bottom: 1px solid var(--border); padding: 1.4rem 0; }
+.faq-q { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.1rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 1rem; color: var(--text); }
+.faq-q::after { content: '+'; color: var(--gold); font-size: 1.5rem; font-weight: 300; flex-shrink: 0; }
+.faq.open .faq-q::after { content: '−'; }
+.faq-a { font-size: 1.05rem; color: var(--muted); line-height: 1.75; margin-top: 0.8rem; display: none; }
+.faq.open .faq-a { display: block; }
+
+/* FOOTER */
+footer { border-top: 1px solid var(--border); padding: 2.5rem 0; }
+.footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+footer p { font-size: 1rem; }
+.footer-links { display: flex; gap: 1.8rem; }
+.footer-links a { color: var(--muted); text-decoration: none; font-size: 1rem; transition: color 0.2s; }
+.footer-links a:hover { color: var(--gold); }
+
+/* ── EMAIL POPUP ── */
+.popup-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.82); z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 1rem; opacity: 0; pointer-events: none; transition: opacity 0.35s; }
+.popup-overlay.visible { opacity: 1; pointer-events: all; }
+.popup-box { background: var(--bg2); border: 1px solid var(--border2); border-radius: 20px; padding: 3rem 2.8rem; max-width: 520px; width: 100%; position: relative; transform: translateY(24px); transition: transform 0.35s; }
+.popup-overlay.visible .popup-box { transform: translateY(0); }
+.popup-close { position: absolute; top: 1.2rem; right: 1.4rem; background: none; border: none; color: var(--muted); font-size: 1.5rem; cursor: pointer; line-height: 1; transition: color 0.2s; padding: 0.2rem; }
+.popup-close:hover { color: var(--text); }
+.popup-tag { display: inline-flex; align-items: center; gap: 6px; background: rgba(34,201,122,0.12); border: 1px solid rgba(34,201,122,0.3); border-radius: 100px; padding: 4px 12px; font-size: 0.75rem; font-weight: 700; color: var(--green); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 1.2rem; }
+.popup-tag::before { content: '🎁'; }
+.popup-box h3 { font-family: 'Syne', sans-serif; font-size: 1.7rem; font-weight: 800; letter-spacing: -0.5px; line-height: 1.1; margin-bottom: 0.8rem; color: var(--text); }
+.popup-box h3 em { font-style: normal; color: var(--gold); }
+.popup-box p { font-size: 0.97rem; color: var(--muted); margin-bottom: 1.6rem; line-height: 1.65; }
+.popup-form { display: flex; flex-direction: column; gap: 0.8rem; }
+.popup-form input { background: var(--bg3); border: 1px solid var(--border); border-radius: 8px; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 1rem; padding: 0.85rem 1rem; outline: none; transition: border-color 0.2s; }
+.popup-form input:focus { border-color: var(--gold); }
+.popup-submit { background: var(--gold); color: #07090d; font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; padding: 0.9rem; border: none; border-radius: 8px; cursor: pointer; transition: all 0.2s; }
+.popup-submit:hover { background: var(--gold-light); transform: translateY(-1px); }
+.popup-fine { font-size: 0.9rem; color: var(--muted); text-align: center; margin-top: 0.6rem; }
+.popup-success { text-align: center; padding: 1rem 0; }
+.popup-success .big-check { font-size: 3rem; margin-bottom: 0.8rem; }
+.popup-success h4 { font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 700; color: var(--green); margin-bottom: 0.5rem; }
+.popup-success p { font-size: 0.95rem; }
+.popup-what { background: var(--bg3); border: 1px solid var(--border); border-radius: 10px; padding: 1rem 1.2rem; margin-bottom: 1.6rem; }
+.popup-what-title { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem; }
+.popup-what ul { list-style: none; }
+.popup-what ul li { font-size: 0.92rem; color: var(--muted); padding: 0.25rem 0; display: flex; align-items: flex-start; gap: 8px; }
+.popup-what ul li::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; }
+
+/* ── PAIN SECTION ── */
+.pain-section { background: linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%); border-bottom: 1px solid var(--border); }
+.pain-headline { font-size: clamp(1.7rem,3vw,2.4rem); font-weight: 800; letter-spacing: -1px; max-width: 760px; line-height: 1.15; margin-bottom: 1.2rem; }
+.pain-headline em { font-style: normal; color: var(--gold); }
+.pain-lead { font-size: 1.15rem; max-width: 640px; margin-bottom: 3rem; line-height: 1.75; color: var(--text); }
+.pain-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; margin-bottom: 3.5rem; }
+.pain-card { background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.8rem; position: relative; overflow: hidden; }
+.pain-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(229,85,85,0.04) 0%, transparent 60%); pointer-events: none; }
+.pain-card.gold-card::before { background: linear-gradient(135deg, rgba(201,168,76,0.06) 0%, transparent 60%); }
+.pain-num { font-family: 'Syne', sans-serif; font-size: 2.8rem; font-weight: 800; line-height: 1; margin-bottom: 0.5rem; color: var(--red); }
+.pain-card.gold-card .pain-num { color: var(--gold); }
+.pain-card h4 { font-family: 'Syne', sans-serif; font-size: 0.97rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--text); }
+.pain-card p { font-size: 1.05rem; line-height: 1.65; }
+.pain-vs { display: grid; grid-template-columns: 1fr auto 1fr; gap: 1.5rem; align-items: center; margin-bottom: 3.5rem; }
+.pain-col { background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius); padding: 2rem; }
+.pain-col.bad { border-color: rgba(229,85,85,0.25); }
+.pain-col.good { border-color: rgba(34,201,122,0.25); }
+.pain-col-tag { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 1rem; }
+.bad .pain-col-tag { color: var(--red); }
+.good .pain-col-tag { color: var(--green); }
+.pain-col ul { list-style: none; }
+.pain-col ul li { font-size: 1.05rem; padding: 0.5rem 0; border-bottom: 1px solid var(--border); display: flex; align-items: flex-start; gap: 10px; color: var(--muted); }
+.pain-col ul li:last-child { border-bottom: none; }
+.pain-col ul li .icon { flex-shrink: 0; width: 18px; text-align: center; }
+.vs-divider { text-align: center; }
+.vs-circle { width: 48px; height: 48px; background: var(--bg4); border: 1px solid var(--border2); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-weight: 800; font-size: 0.85rem; color: var(--gold); margin: 0 auto; }
+.pain-quote { background: var(--gold-dim); border: 1px solid var(--border2); border-radius: var(--radius); padding: 2rem 2.5rem; text-align: center; }
+.pain-quote blockquote { font-family: 'Syne', sans-serif; font-size: clamp(1.25rem, 2.4vw, 1.7rem); font-weight: 700; color: var(--text); line-height: 1.35; margin-bottom: 1rem; letter-spacing: -0.3px; }
+.pain-quote blockquote em { font-style: normal; color: var(--gold); }
+.pain-quote cite { font-size: 1rem; color: var(--muted); font-style: normal; }
+
+/* ── CALCULATOR ── */
+.calc-wrap { background: var(--bg2); border: 1px solid var(--border); border-radius: 20px; padding: 2.8rem; margin-top: 3rem; }
+.calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+.calc-left h3 { font-family: 'Syne', sans-serif; font-size: 1.3rem; font-weight: 700; margin-bottom: 0.5rem; }
+.calc-left p { font-size: 0.95rem; margin-bottom: 2rem; }
+.slider-group { margin-bottom: 1.8rem; }
+.slider-label { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.6rem; }
+.slider-label span:first-child { font-size: 0.88rem; font-weight: 600; color: var(--muted); }
+.slider-val { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.1rem; color: var(--gold); }
+input[type=range] { width: 100%; height: 4px; background: var(--border); border-radius: 2px; outline: none; border: none; padding: 0; cursor: pointer; appearance: none; -webkit-appearance: none; }
+input[type=range]::-webkit-slider-thumb { appearance: none; -webkit-appearance: none; width: 18px; height: 18px; background: var(--gold); border-radius: 50%; cursor: pointer; box-shadow: 0 2px 8px rgba(201,168,76,0.4); }
+.calc-results { display: flex; flex-direction: column; gap: 1rem; }
+.calc-result-card { background: var(--bg3); border: 1px solid var(--border); border-radius: 10px; padding: 1.2rem 1.5rem; }
+.calc-result-card.highlight { border-color: var(--gold); background: var(--gold-dim); }
+.calc-result-label { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.3rem; }
+.calc-result-card.highlight .calc-result-label { color: var(--gold); }
+.calc-result-val { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; line-height: 1; color: var(--text); }
+.calc-result-card.highlight .calc-result-val { color: var(--gold); }
+.calc-result-sub { font-size: 0.85rem; color: var(--muted); margin-top: 0.25rem; }
+
+/* PAY FIRST NOTICE */
+.pay-first-notice { background: var(--gold-dim); border: 1px solid var(--border2); border-radius: 12px; padding: 1.4rem 1.8rem; margin-bottom: 2rem; }
+.pay-first-steps { display: flex; align-items: center; gap: 0.8rem; flex-wrap: wrap; justify-content: center; }
+.pay-step { display: flex; align-items: center; gap: 0.7rem; }
+.pay-step-num { width: 28px; height: 28px; background: var(--bg3); border: 1px solid var(--border); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-weight: 800; font-size: 0.85rem; color: var(--muted); flex-shrink: 0; }
+.pay-step.active .pay-step-num { background: var(--gold); color: #07090d; border-color: var(--gold); }
+.pay-step-text { display: flex; flex-direction: column; }
+.pay-step-text strong { font-size: 0.9rem; color: var(--text); font-weight: 600; }
+.pay-step-text span { font-size: 0.8rem; color: var(--muted); }
+.pay-step-arrow { color: var(--muted); font-size: 1rem; flex-shrink: 0; }
+/* PAIN CTA ROW */
+.pain-cta-row { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; margin-top: 0.5rem; }
+.pain-cta-note { font-size: 0.95rem; color: var(--muted); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .pain-cards { grid-template-columns: 1fr; }
+  .pain-vs { grid-template-columns: 1fr; }
+  .vs-divider { display: none; }
+  .calc-grid { grid-template-columns: 1fr; }
+  .why-grid, .gen-form, .form-grid { grid-template-columns: 1fr; }
+  .gen-full, .form-full { grid-column: 1; }
+  .stats-grid, .steps-grid, .pricing-grid { grid-template-columns: repeat(2,1fr); }
+  .checks { grid-template-columns: 1fr; }
+  .pay-first-steps { flex-direction: column; align-items: flex-start; gap: 0.6rem; }
+  .pay-step-arrow { transform: rotate(90deg); margin-left: 12px; }
+}
+@media (max-width: 600px) {
+  h1 { letter-spacing: -1px; }
+  .steps-grid, .pricing-grid { grid-template-columns: 1fr; }
+  .hero { padding: 80px 0 60px; }
+  .section { padding: 55px 0; }
+  .form-wrap, .gen-body { padding: 1.4rem 1.1rem; }
+  .nav-links a:not(.btn-gold):not([href="#pricing"]) { display: none; }
+  .stats-grid { grid-template-columns: repeat(2,1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a class="logo" href="#">Dispute<em>Dispatch</em></a>
+    <div class="nav-links">
+      <a href="#why">Why CFPB</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#letters">605B Letters</a>
+      <a href="#submit" class="btn btn-gold" style="font-size:0.85rem;padding:0.45rem 1.1rem;">Submit a Case</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-tag">B2B Only — For Credit Repair Businesses</div>
+    <h1>We File the CFPB Complaints.<br><em>You Get the Credit.</em></h1>
+    <p class="hero-sub">Send us your client's case. We file every CFPB complaint against the bureaus and individual creditors same day. You deliver results. We stay invisible.</p>
+    <div class="hero-actions">
+      <a href="#pricing" class="btn btn-gold">See Pricing →</a>
+      <a href="#why" class="btn btn-ghost">Why CFPB Complaints Work</a>
+    </div>
+    <div class="hero-proof">
+      <div class="proof-item"><span>⚡</span> Same-day filing</div>
+      <div class="proof-item"><span>🔒</span> 100% white label</div>
+      <div class="proof-item"><span>📋</span> All receipts delivered to you</div>
+      <div class="proof-item"><span>⚖️</span> FCRA + CROA compliant</div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-strip">
+  <div class="wrap">
+    <div class="stats-grid">
+      <div class="stat"><div class="stat-n">24hr</div><div class="stat-l">Filing Turnaround</div></div>
+      <div class="stat"><div class="stat-n">3</div><div class="stat-l">Bureaus Per Case</div></div>
+      <div class="stat"><div class="stat-n">25+</div><div class="stat-l">Creditor Filings Available</div></div>
+      <div class="stat"><div class="stat-n">100%</div><div class="stat-l">White Label — Your Brand</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- PAIN SECTION -->
+<section class="pain-section section">
+  <div class="wrap">
+    <div class="eyebrow">The Real Cost of Doing It Yourself</div>
+    <h2 class="pain-headline">You Didn't Start a Credit Repair Business<br>to Spend <em>8 Hours Filing Forms.</em></h2>
+    <p class="pain-lead">Here's what no one talks about: the most time-consuming part of credit repair isn't the strategy. It's the admin. And every hour you spend clicking through CFPB forms is an hour you're not closing clients, not growing your business, not doing what you're actually good at.</p>
+
+    <div class="pain-cards">
+      <div class="pain-card">
+        <div class="pain-num">8hrs+</div>
+        <h4>Per Identity Theft Case</h4>
+        <p>One client. 3 bureaus. Up to 25 creditors. That's 28 separate CFPB complaint forms — each needing custom dates, company names, complaint text, and resolution language. Manually. One at a time.</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-num">$400</div>
+        <h4>In Time You'll Never Get Back</h4>
+        <p>If your time is worth $50/hr (conservative for a business owner), one identity theft case costs you $400+ in labor. You charge $500–$1,500 for the case. That's most of your margin gone — doing work a computer should handle.</p>
+      </div>
+      <div class="pain-card gold-card">
+        <div class="pain-num">0</div>
+        <h4>New Clients Acquired That Day</h4>
+        <p>While you're filing CFPB forms for 8 hours, you're not making sales calls. You're not following up on leads. You're not posting content. You're not doing anything that actually grows your business. That's the invisible cost nobody calculates.</p>
+      </div>
+    </div>
+
+    <div class="pain-cta-row">
+      <a href="#pricing" class="btn btn-gold">See What It Costs to Outsource →</a>
+      <span class="pain-cta-note">Most businesses save $300+ per case in recovered time</span>
+    </div>
+  </div>
+</section>
+
+<!-- TIME / PROFIT CALCULATOR -->
+<section class="section" style="background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
+  <div class="wrap">
+    <div class="eyebrow">ROI Calculator</div>
+    <h2>See What Your Time Is Actually Worth</h2>
+    <p style="max-width:520px;">Move the sliders. Watch what manual filing is actually costing your business — and what you could be making instead.</p>
+    <div class="calc-wrap">
+      <div class="calc-grid">
+        <div class="calc-left">
+          <h3>Your Numbers</h3>
+          <p>Adjust the sliders to match your business reality.</p>
+
+          <div class="slider-group">
+            <div class="slider-label"><span>Cases per month</span><span class="slider-val" id="sv-cases">5</span></div>
+            <input type="range" id="sl-cases" min="1" max="30" value="5" oninput="calcROI()">
+          </div>
+          <div class="slider-group">
+            <div class="slider-label"><span>Avg. charge per client ($)</span><span class="slider-val" id="sv-charge">$800</span></div>
+            <input type="range" id="sl-charge" min="200" max="2000" step="50" value="800" oninput="calcROI()">
+          </div>
+          <div class="slider-group">
+            <div class="slider-label"><span>Hrs filing per case manually</span><span class="slider-val" id="sv-hrs">6</span></div>
+            <input type="range" id="sl-hrs" min="2" max="12" value="6" oninput="calcROI()">
+          </div>
+          <div class="slider-group">
+            <div class="slider-label"><span>Your hourly value ($)</span><span class="slider-val" id="sv-rate">$75</span></div>
+            <input type="range" id="sl-rate" min="25" max="200" step="5" value="75" oninput="calcROI()">
+          </div>
+        </div>
+
+        <div class="calc-results">
+          <div class="calc-result-card">
+            <div class="calc-result-label">Hours Wasted Filing Per Month</div>
+            <div class="calc-result-val" id="r-hrs">30 hrs</div>
+            <div class="calc-result-sub">That's almost a full work week — gone</div>
+          </div>
+          <div class="calc-result-card">
+            <div class="calc-result-label">Cost of Your Time (Manual Filing)</div>
+            <div class="calc-result-val" id="r-timecost">$2,250</div>
+            <div class="calc-result-sub">Real money you're spending on admin work</div>
+          </div>
+          <div class="calc-result-card">
+            <div class="calc-result-label">DisputeDispatch Monthly Cost</div>
+            <div class="calc-result-val" id="r-ddcost">$750</div>
+            <div class="calc-result-sub">Full Package ($150 × your case volume)</div>
+          </div>
+          <div class="calc-result-card highlight">
+            <div class="calc-result-label">💰 Net Monthly Gain</div>
+            <div class="calc-result-val" id="r-gain">$1,500</div>
+            <div class="calc-result-sub" id="r-sub">In recovered time + freed capacity for new clients</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how" class="section">
+  <div class="wrap">
+    <div class="eyebrow">The Process</div>
+    <h2>Simple. Fast. Invisible.</h2>
+    <p style="max-width:480px; margin-bottom:0;">Four steps from submission to delivery. You focus on your clients — we handle the filing.</p>
+    <div class="steps-grid">
+      <div class="step"><div class="step-n">01</div><div class="step-icon">📋</div><h3>Submit the Case</h3><p>Fill out our intake form with client info and what needs filing. Takes about 5 minutes.</p></div>
+      <div class="step"><div class="step-n">02</div><div class="step-icon">⚡</div><h3>We File Everything</h3><p>Same day, all CFPB complaints are filed — bureaus first, then individual creditors with custom text.</p></div>
+      <div class="step"><div class="step-n">03</div><div class="step-icon">📬</div><h3>You Get the Receipts</h3><p>We deliver all complaint IDs, a tracking spreadsheet, and screenshots of every filing within 24hrs.</p></div>
+      <div class="step"><div class="step-n">04</div><div class="step-icon">🏆</div><h3>You Keep the Credit</h3><p>Deliver results under your brand. We stay invisible. You close the case.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY CFPB -->
+<section id="why" class="section" style="background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
+  <div class="wrap">
+    <div class="why-grid">
+      <div class="why-left">
+        <div class="eyebrow">Why It Actually Works</div>
+        <h2>CFPB Complaints Are Not Regular Dispute Letters</h2>
+        <p>Most credit repair businesses send dispute letters directly to the bureaus. That's the baseline — and bureaus know they can stall, rubber-stamp a "verified" response, or simply ignore a letter with zero consequences.</p>
+        <p>A CFPB complaint is different. It goes to a <strong>federal regulator with enforcement power</strong>. The bureau isn't just replying to your client — they're responding to the government on a public record that can be used in litigation.</p>
+        <p>Companies that drag their feet on dispute letters respond <strong>within 15 days</strong> when a CFPB complaint is filed. Every time. Because the alternative is regulatory scrutiny no company wants.</p>
+        <div class="law-badge">⚖️ Backed by FCRA §605B & §616 — Up to $1,000 per violation</div>
+        <table class="vs-table">
+          <thead><tr><th>Factor</th><th>Dispute Letter</th><th>CFPB Complaint</th></tr></thead>
+          <tbody>
+            <tr><td>Who sees it</td><td>Bureau only</td><td class="check">Federal regulator + public record</td></tr>
+            <tr><td>Response time</td><td>30-45 days</td><td class="check">15 days required by law</td></tr>
+            <tr><td>Legal weight</td><td class="cross">None</td><td class="check">Regulatory enforcement pressure</td></tr>
+            <tr><td>Creates litigation trail</td><td class="cross">Limited</td><td class="check">Yes — admissible in court</td></tr>
+            <tr><td>Can be ignored</td><td class="cross">Often</td><td class="check">Rarely — regulatory risk</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="why-right">
+        <div class="eyebrow">What Happens Step by Step</div>
+        <div class="cfpb-step">
+          <div class="cfpb-step-num">Step 01 — Filing</div>
+          <h4>Complaint Submitted to CFPB</h4>
+          <p>We file through the official CFPB portal. It's immediately logged, assigned a tracking number, and forwarded to the named company. This creates a federal record tied to your client's case.</p>
+        </div>
+        <div class="cfpb-step">
+          <div class="cfpb-step-num">Step 02 — Company Response</div>
+          <h4>Company Has 15 Days to Respond</h4>
+          <p>Unlike a dispute letter, the company must respond to the CFPB — not just your client. Ignoring it risks regulatory scrutiny. Most companies remove legitimate errors rather than defend fraud on federal record.</p>
+        </div>
+        <div class="cfpb-step">
+          <div class="cfpb-step-num">Step 03 — Bureau Action</div>
+          <h4>Bureaus Remove or Verify</h4>
+          <p>When the complaint targets a bureau, they must investigate every listed item. With an FTC Identity Theft Report attached, bureaus are legally required under §605B to block fraudulent info within 4 business days.</p>
+        </div>
+        <div class="cfpb-step">
+          <div class="cfpb-step-num">Step 04 — Results</div>
+          <h4>Your Client Sees the Change</h4>
+          <p>Removed items no longer appear on the report. Inquiry counts drop. Collections disappear. Your client's score improves — and you delivered the result under your brand name.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing" class="section" style="background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
+  <div class="wrap">
+    <div class="eyebrow">Pricing</div>
+    <h2>Straight to the Point</h2>
+    <p style="max-width:480px;">Pay per case or lock in a retainer. <strong>Complete payment first</strong>, then submit your case through the intake form below.</p>
+    <div class="pricing-grid">
+
+      <div class="plan">
+        <div class="plan-name">Bureau Package</div>
+        <div class="plan-price">$75 <sub>/ client</sub></div>
+        <div class="plan-per">Best for cases targeting all 3 bureaus.</div>
+        <ul>
+          <li><strong>3 CFPB bureau complaints</strong> — all 3 bureaus</li>
+          <li>Full complaint text per bureau</li>
+          <li>FTC report number in every filing</li>
+          <li>All confirmation numbers within 24hrs</li>
+          <li>PDF filing summary</li>
+        </ul>
+        <a href="https://buy.stripe.com/YOUR_BUREAU_LINK" class="btn btn-outline btn-full" target="_blank">Get Started →</a>
+        <div class="stripe-note">🔒 Secured by Stripe</div>
+      </div>
+
+      <div class="plan hot">
+        <div class="plan-badge">Most Popular</div>
+        <div class="plan-name">Full Package</div>
+        <div class="plan-price">$150 <sub>/ client</sub></div>
+        <div class="plan-per">Complete coverage — bureaus AND every creditor.</div>
+        <ul>
+          <li><strong>3 CFPB bureau complaints</strong></li>
+          <li><strong>Up to 25 individual creditor complaints</strong></li>
+          <li>Custom text per creditor with exact dates</li>
+          <li>FTC report attached to every filing</li>
+          <li>Confirmation IDs + tracking spreadsheet</li>
+          <li>Priority same-day turnaround</li>
+        </ul>
+        <a href="https://buy.stripe.com/YOUR_FULL_PACKAGE_LINK" class="btn btn-gold btn-full" target="_blank">Get Started →</a>
+        <div class="stripe-note">🔒 Secured by Stripe</div>
+      </div>
+
+      <div class="plan">
+        <div class="plan-name">Monthly Retainer</div>
+        <div class="plan-price">$500 <sub>/ mo</sub></div>
+        <div class="plan-per">For businesses with consistent monthly volume.</div>
+        <ul>
+          <li><strong>Up to 5 full-package cases/month</strong></li>
+          <li>Everything in Full Package per case</li>
+          <li>Same-day turnaround always</li>
+          <li>Escalation strategy included</li>
+          <li>605B letter generation included</li>
+          <li>Month-to-month — cancel anytime</li>
+        </ul>
+        <a href="https://buy.stripe.com/YOUR_RETAINER_LINK" class="btn btn-outline btn-full" target="_blank">Get Started →</a>
+        <div class="stripe-note">🔒 Secured by Stripe</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 605B GENERATOR -->
+<section id="letters" class="section">
+  <div class="wrap">
+    <div class="eyebrow">Free Tool for Your Clients</div>
+    <h2>605B Identity Theft Block Letter Generator</h2>
+
+    <!-- 605B EXPLAINER -->
+    <div class="explainer-grid">
+      <div class="explainer-what">
+        <div class="explainer-label">What is a 605B Letter?</div>
+        <p>Section 605B is a specific law inside the Fair Credit Reporting Act (FCRA) that gives identity theft victims a <strong>direct right to block fraudulent information</strong> from their credit report — separate from a regular dispute. When your client sends this letter to a bureau with their FTC Identity Theft Report attached, the bureau is legally required to block every listed item <strong>within 4 business days.</strong> No investigation. No back-and-forth. Just removal.</p>
+      </div>
+      <div class="explainer-divider"></div>
+      <div class="explainer-when">
+        <div class="explainer-label">When Do You Need It?</div>
+        <ul class="explainer-list">
+          <li>
+            <span class="el-icon">🔁</span>
+            <div><strong>After a CFPB complaint comes back "verified"</strong> — the bureau says the item is legitimate but your client has an FTC report proving identity theft. The 605B overrides that verification.</div>
+          </li>
+          <li>
+            <span class="el-icon">⚡</span>
+            <div><strong>When you need faster results</strong> — CFPB complaints take up to 15 days. A properly filed 605B letter triggers a mandatory 4-business-day block. Use both together for maximum pressure.</div>
+          </li>
+          <li>
+            <span class="el-icon">🧱</span>
+            <div><strong>When multiple rounds haven't worked</strong> — if a bureau keeps re-inserting a fraudulent account after removal, a 605B letter with an FTC report creates a permanent legal block they must honor.</div>
+          </li>
+          <li>
+            <span class="el-icon">📬</span>
+            <div><strong>As a first strike on clear-cut fraud</strong> — if your client has an FTC report and the accounts are obviously fraudulent (auto dealer inquiries they never authorized, debts they never incurred), start with both simultaneously.</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="explainer-callout">
+      <span class="ec-icon">💡</span>
+      <p><strong>Best practice:</strong> File the CFPB complaint AND mail the 605B letter at the same time. The CFPB complaint hits the regulator level. The 605B hits the bureau directly. Two legal mechanisms, one case. Use the generator below to create the letter in seconds.</p>
+    </div>
+
+    <div class="generator-wrap">
+      <div class="gen-tabs">
+        <button class="gen-tab active" onclick="switchTab('input')">📝 Enter Client Info</button>
+        <button class="gen-tab" onclick="switchTab('output')">📄 Generated Letter</button>
+      </div>
+      <div class="gen-body" id="tab-input">
+        <div class="gen-form">
+          <div class="fg"><label>Client Full Name <span class="req">*</span></label><input id="g-name" type="text" placeholder="Tiffany M. Johnson"></div>
+          <div class="fg"><label>Today's Date <span class="req">*</span></label><input id="g-date" type="text" placeholder="May 13, 2026"></div>
+          <div class="fg gen-full"><label>Client Full Address <span class="req">*</span></label><input id="g-addr" type="text" placeholder="18 Meehan Ln Apt D, Rockville Centre, NY 11570"></div>
+          <div class="fg"><label>FTC Report # <span class="req">*</span></label><input id="g-ftc" type="text" placeholder="201473281"></div>
+          <div class="fg"><label>Target Bureau <span class="req">*</span></label>
+            <select id="g-bureau" onchange="autofillAddr()">
+              <option value="Experian">Experian</option>
+              <option value="TransUnion">TransUnion</option>
+              <option value="Equifax">Equifax</option>
+            </select>
+          </div>
+          <div class="fg gen-full"><label>Bureau Mailing Address</label><input id="g-bureau-addr" value="P.O. Box 9554, Allen, TX 75013"></div>
+          <div class="fg gen-full"><label>Fraudulent Items to Block <span class="req">*</span></label><textarea id="g-items" rows="5" placeholder="List each item on its own line:&#10;- LVNV Funding / Fingerhut — $331 collection&#10;- Capital One Auto inquiry — 08/24/2024&#10;- Midland Credit Management — $643 collection&#10;- Barclays Bank Delaware — 02/27/2026 inquiry"></textarea></div>
+          <div class="fg"><label>Client DOB (optional)</label><input id="g-dob" type="text" placeholder="MM/DD/YYYY"></div>
+          <div class="fg"><label>SSN Last 4 (optional)</label><input id="g-ssn" type="text" placeholder="XXXX" maxlength="4"></div>
+        </div>
+        <div style="margin-top:1.5rem;">
+          <button class="btn btn-gold" onclick="generateLetter()">Generate Letter →</button>
+        </div>
+      </div>
+      <div class="gen-body" id="tab-output" style="display:none;">
+        <div class="gen-output" id="letter-output" style="margin-bottom:1.5rem;">Fill in the form and click "Generate Letter" to create your 605B block letter.</div>
+        <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+          <button class="btn btn-gold" onclick="copyLetter()">📋 Copy Letter</button>
+          <button class="btn btn-ghost" onclick="switchTab('input')">← Edit Details</button>
+        </div>
+        <p id="copy-confirm" style="display:none;color:var(--green);font-size:0.9rem;margin-top:0.8rem;">✓ Letter copied to clipboard!</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INTAKE FORM -->
+<section id="submit" class="section" style="background:var(--bg2);border-top:1px solid var(--border);">
+  <div class="wrap">
+    <div class="eyebrow" style="text-align:center;">Submit a Case</div>
+    <h2 style="text-align:center;">Send Us the Details</h2>
+    <p style="text-align:center;max-width:520px;margin:0 auto;">Complete your payment above first, then fill out this form. We confirm receipt within 2 business hours and deliver all confirmation IDs within 24 hours.</p>
+    <div class="form-wrap">
+      <div class="pay-first-notice">
+        <div class="pay-first-steps">
+          <div class="pay-step done">
+            <div class="pay-step-num">1</div>
+            <div class="pay-step-text"><strong>Choose a package above</strong><span>Bureau, Full, or Retainer</span></div>
+          </div>
+          <div class="pay-step-arrow">→</div>
+          <div class="pay-step done">
+            <div class="pay-step-num">2</div>
+            <div class="pay-step-text"><strong>Complete payment via Stripe</strong><span>You'll get a receipt email</span></div>
+          </div>
+          <div class="pay-step-arrow">→</div>
+          <div class="pay-step active">
+            <div class="pay-step-num">3</div>
+            <div class="pay-step-text"><strong>Fill out this form</strong><span>We file within 24 hours</span></div>
+          </div>
+        </div>
+      </div>
+      <form id="mainForm" action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
+        <input type="text" name="_gotcha" style="display:none;" tabindex="-1" autocomplete="off">
+        <div class="fsec">Your Business</div>
+        <div class="form-grid">
+          <div class="fg"><label>Business Name <span class="req">*</span></label><input name="business_name" required placeholder="ABC Credit Solutions"></div>
+          <div class="fg"><label>Your Name <span class="req">*</span></label><input name="your_name" required placeholder="Full name"></div>
+          <div class="fg"><label>Email <span class="req">*</span></label><input type="email" name="email" required placeholder="you@business.com"></div>
+          <div class="fg"><label>Phone</label><input type="tel" name="phone" placeholder="(555) 000-0000"></div>
+          <div class="fg"><label>Service Selected <span class="req">*</span></label>
+            <select name="service" required>
+              <option value="">— Select a package —</option>
+              <option value="bureau">Bureau Package — $75 / client</option>
+              <option value="full">Full Package — $150 / client</option>
+              <option value="retainer">Monthly Retainer — $500 / mo</option>
+            </select>
+          </div>
+          <div class="fg"><label>Stripe Confirmation #</label><input name="payment_ref" placeholder="From your Stripe receipt email"></div>
+        </div>
+        <hr class="div">
+        <div class="fsec">Client Information</div>
+        <div class="form-grid">
+          <div class="fg"><label>Client Full Name <span class="req">*</span></label><input name="client_name" required placeholder="First and Last Name"></div>
+          <div class="fg"><label>Client Date of Birth</label><input name="client_dob" placeholder="MM/DD/YYYY"></div>
+          <div class="fg form-full"><label>Client Address <span class="req">*</span></label><input name="client_address" required placeholder="Street, Apt, City, State ZIP"></div>
+          <div class="fg"><label>Client Email</label><input type="email" name="client_email" placeholder="client@email.com"></div>
+          <div class="fg"><label>Client Phone</label><input type="tel" name="client_phone" placeholder="(555) 000-0000"></div>
+          <div class="fg"><label>FTC Report #</label><input name="ftc_report" placeholder="e.g. 201473281"></div>
+          <div class="fg"><label>Police Report # (if any)</label><input name="police_report" placeholder="Optional"></div>
+        </div>
+        <hr class="div">
+        <div class="fsec">What Needs to Be Filed</div>
+        <div class="fg" style="margin-bottom:1.2rem;">
+          <label>Type of Dispute <span class="req">*</span> — select all that apply</label>
+          <div class="checks">
+            <label class="check-item"><input type="checkbox" name="dispute_type[]" value="inquiries"> Unauthorized Hard Inquiries</label>
+            <label class="check-item"><input type="checkbox" name="dispute_type[]" value="collections"> Collections / Debt</label>
+            <label class="check-item"><input type="checkbox" name="dispute_type[]" value="chargeoffs"> Charge-Offs</label>
+            <label class="check-item"><input type="checkbox" name="dispute_type[]" value="late_payments"> Late Payment History</label>
+            <label class="check-item"><input type="checkbox" name="dispute_type[]" value="id_theft"> Identity Theft Accounts</label>
+            <label class="check-item"><input type="checkbox" name="dispute_type[]" value="other"> Other / Mixed</label>
+          </div>
+        </div>
+        <div class="fg" style="margin-bottom:1.2rem;">
+          <label>Bureaus Affected <span class="req">*</span></label>
+          <div class="checks" style="grid-template-columns:repeat(3,1fr);">
+            <label class="check-item"><input type="checkbox" name="bureaus[]" value="experian"> Experian</label>
+            <label class="check-item"><input type="checkbox" name="bureaus[]" value="transunion"> TransUnion</label>
+            <label class="check-item"><input type="checkbox" name="bureaus[]" value="equifax"> Equifax</label>
+          </div>
+        </div>
+        <div class="fg" style="margin-bottom:1.2rem;">
+          <label>Items to Dispute — one per line <span class="req">*</span></label>
+          <textarea name="dispute_items" required placeholder="One item per line. Include company name, date, and bureau. Example:&#10;- CapOneAuto inquiry 08/24/2024 — Experian, TransUnion, Equifax&#10;- LVNV Funding $331 collection — Experian, TransUnion&#10;- Credit Acceptance inquiry 01/17/2025 — Experian"></textarea>
+        </div>
+        <div class="fg">
+          <label>Additional Notes</label>
+          <textarea name="notes" placeholder="Prior disputes, special circumstances, urgency, anything else..." style="min-height:70px;"></textarea>
+        </div>
+        <button type="submit" class="submit-btn">Submit Case for Processing →</button>
+        <p class="form-note">By submitting you confirm you have written authorization from your client and that payment is complete.<br>We confirm receipt within 2 business hours · All filings completed within 24 hours.</p>
+        <div class="success-msg" id="successMsg">✅ Case received! Confirmation within 2 business hours. All filing receipts within 24 hours.</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="section" style="background:var(--bg2);border-top:1px solid var(--border);">
+  <div class="wrap">
+    <div class="eyebrow" style="text-align:center;">FAQ</div>
+    <h2 style="text-align:center;margin-bottom:3rem;">Common Questions</h2>
+    <div class="faq-wrap">
+      <div class="faq"><div class="faq-q">How fast will complaints be filed?</div><div class="faq-a">Cases submitted before 4pm EST are filed same day. After 4pm, filed by 10am the next business day. You receive all confirmation numbers as each complaint is submitted — not at the end.</div></div>
+      <div class="faq"><div class="faq-q">Do you ever contact my client directly?</div><div class="faq-a">Never. We are strictly your back-end subcontractor. Everything goes to you — you deliver results to your client under your own brand. We are 100% invisible to them.</div></div>
+      <div class="faq"><div class="faq-q">What format do I need to send the credit report in?</div><div class="faq-a">You don't need to send the PDF. Just list the disputed items in the intake form — company name, date of inquiry or account, which bureaus it appears on, and the amount if applicable. We work from the structured list.</div></div>
+      <div class="faq"><div class="faq-q">What's the difference between Bureau Package and Full Package?</div><div class="faq-a">Bureau Package files 3 complaints — one per bureau. Full Package adds up to 25 individual complaints against each specific lender or creditor, applying FCRA Section 604 pressure directly on each company. For identity theft cases we always recommend the Full Package.</div></div>
+      <div class="faq"><div class="faq-q">What if a complaint comes back verified?</div><div class="faq-a">First-round filings resolve the majority of legitimate disputes. If an item survives, we provide escalation guidance and can file round-two complaints referencing the first IDs. Retainer clients get escalation included. Per-case clients can add it as a flat-fee add-on.</div></div>
+      <div class="faq"><div class="faq-q">What is a 605B letter and when should I use it?</div><div class="faq-a">Section 605B of the FCRA gives identity theft victims the right to block fraudulent information directly. When submitted to a bureau with a valid FTC Identity Theft Report, the bureau must block the items within 4 business days — faster than a CFPB complaint in some cases. Use both together for maximum pressure. Our free generator tool above creates ready-to-mail letters instantly.</div></div>
+      <div class="faq"><div class="faq-q">Is this legal for my credit repair business?</div><div class="faq-a">Yes. CFPB filing is a federally protected consumer right. You are subcontracting the filing process — the same way you'd outsource bookkeeping. You remain responsible for having written authorization from your client, which CROA requires regardless of who files.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div>
+        <div class="logo" style="margin-bottom:0.3rem;">Dispute<em>Dispatch</em></div>
+        <p>© 2026 DisputeDispatch · B2B Credit Repair Automation</p>
+      </div>
+      <div class="footer-links">
+        <a href="#">Terms of Service</a>
+        <a href="#">Privacy Policy</a>
+        <a href="mailto:hello@disputedispatch.com">Contact</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- EMAIL POPUP -->
+<div class="popup-overlay" id="popup">
+  <div class="popup-box">
+    <button class="popup-close" onclick="closePopup()" aria-label="Close">×</button>
+    <div id="popup-form-view">
+      <div class="popup-tag">Free Resource</div>
+      <h3>Get Our Free CFPB<br>Filing <em>Template Pack</em></h3>
+      <p>The exact complaint templates we use to clear collections, charge-offs, and 60+ unauthorized inquiries from a single credit report. Yours free — no strings.</p>
+      <div class="popup-what">
+        <div class="popup-what-title">What's inside</div>
+        <ul>
+          <li>Identity theft bureau complaint template (word-for-word)</li>
+          <li>Individual creditor FCRA §604 violation template</li>
+          <li>605B block letter template with legal citations</li>
+          <li>Step-by-step CFPB filing checklist</li>
+        </ul>
+      </div>
+      <form class="popup-form" id="popupForm" action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST" onsubmit="submitPopup(event)">
+        <input type="text" name="_gotcha" style="display:none;" tabindex="-1" autocomplete="off">
+        <input type="text" name="popup_name" placeholder="Your first name" required autocomplete="given-name">
+        <input type="email" name="popup_email" placeholder="Your business email" required autocomplete="email">
+        <input type="hidden" name="source" value="popup_lead_magnet">
+        <button type="submit" class="popup-submit">Send Me the Templates →</button>
+        <p class="popup-fine">No spam. No credit card. Just the templates. Unsubscribe any time.</p>
+      </form>
+    </div>
+    <div class="popup-success" id="popup-success-view" style="display:none;">
+      <div class="big-check">✅</div>
+      <h4>Templates on the way!</h4>
+      <p>Check your inbox in the next few minutes. While you're here — see how we can file cases for you in 24 hours.</p>
+      <a href="#pricing" class="btn btn-gold" style="margin-top:1.2rem;display:inline-block;" onclick="closePopup()">See Pricing →</a>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── BUREAU ADDRESSES ──
+const bureauAddresses = {
+  Experian: 'P.O. Box 9554, Allen, TX 75013',
+  TransUnion: 'P.O. Box 2000, Chester, PA 19016',
+  Equifax: 'P.O. Box 740256, Atlanta, GA 30374'
+};
+function autofillAddr() {
+  const b = document.getElementById('g-bureau').value;
+  document.getElementById('g-bureau-addr').value = bureauAddresses[b] || '';
+}
+
+// ── POPUP ──
+function openPopup() {
+  if (sessionStorage.getItem('popup_seen')) return;
+  document.getElementById('popup').classList.add('visible');
+  sessionStorage.setItem('popup_seen', '1');
+}
+function closePopup() {
+  document.getElementById('popup').classList.remove('visible');
+}
+document.getElementById('popup').addEventListener('click', function(e) {
+  if (e.target === this) closePopup();
+});
+// Exit intent
+document.addEventListener('mouseleave', function(e) {
+  if (e.clientY < 5) openPopup();
+});
+// Time-based fallback (25 seconds)
+setTimeout(openPopup, 25000);
+
+async function submitPopup(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('.popup-submit');
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+  try {
+    const res = await fetch(e.target.action, {
+      method: 'POST', body: new FormData(e.target),
+      headers: { Accept: 'application/json' }
+    });
+    if (res.ok) {
+      document.getElementById('popup-form-view').style.display = 'none';
+      document.getElementById('popup-success-view').style.display = 'block';
+    } else {
+      btn.textContent = 'Send Me the Templates →';
+      btn.disabled = false;
+    }
+  } catch {
+    btn.textContent = 'Send Me the Templates →';
+    btn.disabled = false;
+  }
+}
+
+// ── ROI CALCULATOR ──
+function calcROI() {
+  const cases = +document.getElementById('sl-cases').value;
+  const charge = +document.getElementById('sl-charge').value;
+  const hrs = +document.getElementById('sl-hrs').value;
+  const rate = +document.getElementById('sl-rate').value;
+  document.getElementById('sv-cases').textContent = cases;
+  document.getElementById('sv-charge').textContent = '$' + charge.toLocaleString();
+  document.getElementById('sv-hrs').textContent = hrs;
+  document.getElementById('sv-rate').textContent = '$' + rate;
+  const totalHrs = cases * hrs;
+  const timeCost = cases * hrs * rate;
+  const ddCost = cases * 150;
+  const gain = timeCost - ddCost;
+  const extraClients = Math.floor(totalHrs / 3);
+  document.getElementById('r-hrs').textContent = totalHrs + ' hrs';
+  document.getElementById('r-timecost').textContent = '$' + timeCost.toLocaleString();
+  document.getElementById('r-ddcost').textContent = '$' + ddCost.toLocaleString();
+  document.getElementById('r-gain').textContent = gain > 0 ? '+$' + gain.toLocaleString() : '-$' + Math.abs(gain).toLocaleString();
+  document.getElementById('r-sub').textContent = gain > 0
+    ? `Enough freed time to onboard ${extraClients} more client${extraClients !== 1 ? 's' : ''} — at $${charge.toLocaleString()} each that's $${(extraClients * charge).toLocaleString()} in new revenue`
+    : 'Adjust your hourly rate — your time is worth more than this';
+}
+calcROI();
+
+// ── 605B TABS ──
+function switchTab(tab) {
+  document.getElementById('tab-input').style.display = tab === 'input' ? 'block' : 'none';
+  document.getElementById('tab-output').style.display = tab === 'output' ? 'block' : 'none';
+  document.querySelectorAll('.gen-tab').forEach((t,i) => {
+    t.classList.toggle('active', (tab==='input'&&i===0)||(tab==='output'&&i===1));
+  });
+}
+
+// ── 605B GENERATOR ──
+function generateLetter() {
+  const name = document.getElementById('g-name').value.trim();
+  const date = document.getElementById('g-date').value.trim();
+  const addr = document.getElementById('g-addr').value.trim();
+  const ftc  = document.getElementById('g-ftc').value.trim();
+  const bureau = document.getElementById('g-bureau').value;
+  const bureauAddr = document.getElementById('g-bureau-addr').value.trim();
+  const items = document.getElementById('g-items').value.trim();
+  const dob  = document.getElementById('g-dob').value.trim();
+  const ssn  = document.getElementById('g-ssn').value.trim();
+  if (!name || !date || !addr || !ftc || !items) { alert('Please fill in all required fields marked with *.'); return; }
+  const idLines = [];
+  if (dob)  idLines.push(`Date of Birth: ${dob}`);
+  if (ssn)  idLines.push(`Social Security Number (Last 4 digits): XXX-XX-${ssn}`);
+  const idBlock = idLines.length ? '\n' + idLines.join('\n') : '';
+  const itemLines = items.split('\n').map(l=>l.trim()).filter(Boolean).map(l=>`  • ${l.replace(/^[-•*]\s*/,'')}`).join('\n');
+  const letter =
+`${name}
+${addr}${idBlock}
+
+${date}
+
+${bureau}
+${bureauAddr}
+
+RE: FORMAL REQUEST TO BLOCK FRAUDULENT INFORMATION PURSUANT TO FCRA § 605B
+    FTC Identity Theft Report Number: ${ftc}
+
+To Whom It May Concern:
+
+My name is ${name}. I am writing to formally request that you immediately block the fraudulent information listed below from my credit file, pursuant to Section 605B of the Fair Credit Reporting Act, 15 U.S.C. § 1681c-2.
+
+I am a victim of identity theft. I have filed an Identity Theft Report with the Federal Trade Commission. My FTC Identity Theft Report Number is ${ftc}. This report is on file at identitytheft.gov and is enclosed with this letter.
+
+The following items on my ${bureau} credit report are the direct result of identity theft. I did not open these accounts, authorize these inquiries, or incur these debts. I request that all of the following be blocked immediately:
+
+${itemLines}
+
+Under FCRA § 605B(a), you are legally required to block the reporting of information that a consumer identifies as resulting from alleged identity theft, no later than 4 business days after the date of receipt of:
+
+  (1) appropriate proof of the identity of the consumer;
+  (2) a copy of an identity theft report;
+  (3) the identification of such information by the consumer; and
+  (4) a statement by the consumer that the information is not information relating to any transaction by the consumer.
+
+I am providing all of the above with this letter. I expect written confirmation of the block within 5 business days.
+
+Please also notify the furnisher(s) of this information that the information has been blocked, as required by FCRA § 605B(b).
+
+If you have any questions, please contact me at the address listed above.
+
+Sincerely,
+
+
+${name}
+${addr}
+
+Enclosures:
+  • Copy of FTC Identity Theft Report #${ftc}
+  • Copy of government-issued photo ID (if required)
+
+─────────────────────────────────────────────
+LEGAL NOTICE: This letter is submitted pursuant to the Fair Credit Reporting Act, 15 U.S.C. § 1681 et seq. Failure to comply within the statutory 4-business-day period may subject your agency to liability under 15 U.S.C. § 1681n (willful noncompliance) or § 1681o (negligent noncompliance), including actual damages, statutory damages up to $1,000 per violation, punitive damages, and reasonable attorney's fees.`;
+  document.getElementById('letter-output').textContent = letter;
+  switchTab('output');
+  document.querySelector('.generator-wrap').scrollIntoView({ behavior:'smooth', block:'start' });
+}
+
+function copyLetter() {
+  const text = document.getElementById('letter-output').textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    const c = document.getElementById('copy-confirm');
+    c.style.display = 'block';
+    setTimeout(() => c.style.display = 'none', 3000);
+  });
+}
+
+// ── FAQ ──
+document.querySelectorAll('.faq-q').forEach(q => {
+  q.addEventListener('click', () => {
+    const item = q.closest('.faq');
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq').forEach(f => f.classList.remove('open'));
+    if (!wasOpen) item.classList.add('open');
+  });
+});
+
+// ── MAIN FORM ──
+const form = document.getElementById('mainForm');
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const btn = form.querySelector('.submit-btn');
+  btn.textContent = 'Submitting...';
+  btn.disabled = true;
+  try {
+    const res = await fetch(form.action, {
+      method: 'POST', body: new FormData(form),
+      headers: { Accept: 'application/json' }
+    });
+    if (res.ok) {
+      form.reset();
+      btn.style.display = 'none';
+      const msg = document.getElementById('successMsg');
+      msg.style.display = 'block';
+      msg.scrollIntoView({ behavior:'smooth', block:'center' });
+    } else {
+      btn.textContent = 'Submit Case for Processing →';
+      btn.disabled = false;
+      alert('Something went wrong. Please try again or email us directly.');
+    }
+  } catch {
+    btn.textContent = 'Submit Case for Processing →';
+    btn.disabled = false;
+    alert('Network error. Please try again.');
+  }
+});
+</script>
+</body>
+</html>
