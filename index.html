@@ -474,6 +474,178 @@ footer p{font-size:.88rem;color:var(--t2);}
   .stat{border-right:none;border-bottom:1px solid rgba(255,255,255,.04);}
   .pi{font-size:.82rem;padding:.4rem .9rem;}
 }
+
+/* ─────────────────────────────────────
+   DATE PICKER DARK STYLING
+───────────────────────────────────── */
+input[type=date]{
+  color-scheme:dark;
+  cursor:pointer;
+}
+input[type=date]::-webkit-calendar-picker-indicator{
+  filter:invert(.7) sepia(1) saturate(3) hue-rotate(10deg);
+  cursor:pointer;
+  opacity:.8;
+  scale:1.15;
+}
+input[type=date]::-webkit-calendar-picker-indicator:hover{opacity:1;}
+
+/* ─────────────────────────────────────
+   LEAD GATE MODAL
+───────────────────────────────────── */
+.lead-ov{
+  position:fixed;inset:0;z-index:600;
+  background:rgba(2,4,7,.88);backdrop-filter:blur(14px);
+  display:flex;align-items:center;justify-content:center;
+  padding:1.5rem;opacity:0;pointer-events:none;
+  transition:opacity .35s;
+}
+.lead-ov.visible{opacity:1;pointer-events:all;}
+.lead-box{
+  background:var(--deep);border:1px solid var(--grim);
+  border-radius:24px;padding:2.8rem;max-width:440px;width:100%;
+  position:relative;
+  transform:translateY(28px) scale(.97);
+  transition:transform .42s cubic-bezier(.22,.68,0,1.2);
+  box-shadow:0 50px 100px rgba(0,0,0,.75),0 0 0 1px rgba(212,168,64,.06),inset 0 1px 0 rgba(255,255,255,.05);
+}
+.lead-ov.visible .lead-box{transform:translateY(0) scale(1);}
+.lead-icon{
+  width:54px;height:54px;border-radius:14px;
+  background:rgba(212,168,64,.1);border:1px solid var(--grim);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.4rem;margin-bottom:1.3rem;
+}
+.lead-box h3{
+  font-family:'Syne',sans-serif;font-size:1.6rem;
+  font-weight:800;letter-spacing:-.5px;line-height:1.12;
+  margin-bottom:.55rem;color:var(--t1);
+}
+.lead-box h3 em{font-style:normal;background:var(--gg);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.lead-box>p{font-size:.93rem;color:var(--t2);margin-bottom:1.6rem;line-height:1.68;}
+.lead-form{display:flex;flex-direction:column;gap:.85rem;}
+.lead-field{display:flex;flex-direction:column;gap:.45rem;}
+.lead-field label{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--t2);}
+.lead-field .opt-tag{font-weight:400;color:var(--t3);text-transform:none;letter-spacing:0;font-size:.7rem;}
+.lead-form input{
+  background:var(--s1);border:1px solid rgba(255,255,255,.08);
+  border-radius:10px;color:var(--t1);font-size:.97rem;
+  padding:.9rem 1.1rem;outline:none;
+  transition:border-color .2s,box-shadow .2s;
+  font-family:'Plus Jakarta Sans',sans-serif;width:100%;
+}
+.lead-form input:focus{border-color:var(--g1);box-shadow:0 0 0 3px rgba(212,168,64,.1);}
+.lead-form input.err-inp{border-color:var(--red)!important;box-shadow:0 0 0 3px rgba(255,69,96,.1)!important;}
+.lead-err{font-size:.8rem;color:var(--red);display:none;margin-top:-.25rem;}
+.lead-err.show{display:block;}
+.lead-sub{
+  background:var(--gg);color:#020407;
+  font-family:'Syne',sans-serif;font-weight:800;font-size:.97rem;
+  padding:1rem;border:none;border-radius:12px;cursor:pointer;
+  transition:all .25s;box-shadow:0 8px 24px rgba(212,168,64,.3);
+  margin-top:.4rem;display:flex;align-items:center;justify-content:center;gap:8px;
+}
+.lead-sub:hover{transform:translateY(-1px);box-shadow:0 14px 36px rgba(212,168,64,.42);}
+.lead-sub:disabled{opacity:.55;cursor:not-allowed;transform:none;}
+.lead-fine{font-size:.78rem;color:var(--t3);text-align:center;margin-top:.6rem;}
+.lead-fine a{color:var(--t3);text-decoration:underline;text-underline-offset:2px;}
+.lead-privacy{
+  display:flex;align-items:center;gap:8px;
+  background:rgba(0,232,124,.05);border:1px solid rgba(0,232,124,.14);
+  border-radius:9px;padding:.65rem 1rem;margin-top:.2rem;
+  font-size:.82rem;color:var(--t2);
+}
+.lead-privacy::before{content:'🔒';font-size:.85rem;}
+
+/* ─────────────────────────────────────
+   TOOLS / RESOURCES SECTION
+───────────────────────────────────── */
+.tools-g{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem;}
+.tool-card{
+  background:var(--s1);border:1px solid rgba(255,255,255,.06);
+  border-radius:22px;padding:2.6rem;
+  display:flex;flex-direction:column;
+  position:relative;overflow:hidden;
+  transition:transform .3s,border-color .3s,box-shadow .3s;
+}
+.tool-card::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(145deg,rgba(212,168,64,.06) 0%,transparent 55%);
+  pointer-events:none;
+}
+.tool-card:hover{transform:translateY(-6px);border-color:rgba(212,168,64,.18);box-shadow:0 28px 70px rgba(0,0,0,.45);}
+.tool-bg-n{
+  position:absolute;top:-15px;right:16px;
+  font-family:'Syne',sans-serif;font-size:8rem;font-weight:800;
+  color:rgba(212,168,64,.05);line-height:1;pointer-events:none;user-select:none;
+}
+.tool-pain{
+  display:inline-flex;align-items:center;gap:7px;
+  background:rgba(255,69,96,.08);border:1px solid rgba(255,69,96,.22);
+  border-radius:100px;padding:5px 16px;
+  font-size:.82rem;font-weight:700;color:var(--red);
+  letter-spacing:.07em;text-transform:uppercase;margin-bottom:1.3rem;width:fit-content;
+}
+.tool-pain::before{content:'';width:6px;height:6px;background:var(--red);border-radius:50%;opacity:.8;}
+.tool-name{
+  font-family:'Syne',sans-serif;font-size:1.45rem;font-weight:800;
+  color:var(--t1);margin-bottom:.85rem;line-height:1.18;
+}
+.tool-body{font-size:1.05rem;color:var(--t2);line-height:1.85;margin-bottom:1.6rem;}
+.tool-includes{list-style:none;margin-bottom:1.8rem;display:flex;flex-direction:column;gap:.65rem;}
+.tool-includes li{
+  display:flex;align-items:flex-start;gap:10px;
+  font-size:1rem;color:var(--t2);line-height:1.55;
+}
+.tool-includes li::before{content:'→';color:var(--g3);font-weight:700;flex-shrink:0;margin-top:1px;}
+.tool-footer{margin-top:auto;padding-top:1.8rem;border-top:1px solid rgba(255,255,255,.05);}
+.tool-price{
+  font-family:'Syne',sans-serif;font-size:2.6rem;font-weight:800;
+  background:var(--gg);-webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;line-height:1;margin-bottom:.5rem;
+}
+.tool-price sub{font-size:1.05rem;-webkit-text-fill-color:var(--t2);color:var(--t2);font-weight:400;font-family:'Plus Jakarta Sans',sans-serif;letter-spacing:0;}
+.tool-early-tag{
+  display:flex;align-items:center;gap:7px;
+  font-size:.88rem;font-weight:600;color:var(--green);
+  margin-bottom:1.1rem;
+}
+.tool-early-tag::before{content:'●';font-size:.5rem;animation:blink 2s infinite;}
+.tool-cta{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  width:100%;padding:1.05rem;border-radius:12px;
+  font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;
+  border:1px solid var(--grim);color:var(--g3);background:transparent;
+  cursor:pointer;text-decoration:none;transition:all .25s;
+  position:relative;overflow:hidden;
+}
+.tool-cta::after{content:'';position:absolute;top:0;left:-120%;width:50%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.08),transparent);}
+.tool-cta:hover{background:var(--gdim);border-color:var(--g3);}
+.tool-cta:hover::after{animation:shimmer .55s ease;}
+.tool-card.featured-tool{
+  background:linear-gradient(150deg,rgba(212,168,64,.09),var(--s1));
+  border:none;
+  box-shadow:0 0 0 1px rgba(212,168,64,.15),0 40px 80px rgba(0,0,0,.4);
+}
+.tool-card.featured-tool .tool-cta{background:var(--gg);color:#020407;border:none;}
+.tool-card.featured-tool .tool-cta:hover{transform:translateY(-1px);box-shadow:0 10px 30px rgba(212,168,64,.4);}
+@media(max-width:1000px){.tools-g{grid-template-columns:1fr;}}
+
+/* ─────────────────────────────────────
+   PRINT STYLES
+───────────────────────────────────── */
+#print-frame{display:none;}
+@media print{
+  body>*{display:none!important;}
+  #print-frame{
+    display:block!important;position:fixed;inset:0;
+    background:#fff;color:#111;z-index:99999;
+    padding:2.5cm 2.8cm;
+    font-family:'Courier New',Courier,monospace;
+    font-size:11.5pt;line-height:1.75;
+    white-space:pre-wrap;word-break:break-word;
+  }
+}
 </style>
 </head>
 <body>
@@ -486,6 +658,7 @@ footer p{font-size:.88rem;color:var(--t2);}
     <div class="nav-links">
       <a href="#why">Why CFPB</a>
       <a href="#pricing">Pricing</a>
+      <a href="#tools">Tools</a>
       <a href="#letters">605B Letters</a>
       <a href="#submit" class="btn btn-gold" style="font-size:.85rem;padding:.5rem 1.2rem;">Submit a Case</a>
     </div>
@@ -756,10 +929,10 @@ footer p{font-size:.88rem;color:var(--t2);}
       </div>
       <div class="gen-b" id="tab-input">
         <div class="gen-form">
-          <div class="fg"><label>Client Full Name <span class="rq">*</span></label><input id="g-name" type="text" placeholder="Tiffany M. Johnson"></div>
-          <div class="fg"><label>Today's Date <span class="rq">*</span></label><input id="g-date" type="text" placeholder="May 13, 2026"></div>
-          <div class="fg gf"><label>Client Full Address <span class="rq">*</span></label><input id="g-addr" type="text" placeholder="18 Meehan Ln Apt D, Rockville Centre, NY 11570"></div>
-          <div class="fg"><label>FTC Report # <span class="rq">*</span></label><input id="g-ftc" type="text" placeholder="201473281"></div>
+          <div class="fg"><label>Client Full Name <span class="rq">*</span></label><input id="g-name" type="text" placeholder="First and Last Name"></div>
+          <div class="fg"><label>Letter Date <span class="rq">*</span></label><input id="g-date" type="date"></div>
+          <div class="fg gf"><label>Client Full Address <span class="rq">*</span></label><input id="g-addr" type="text" placeholder="Street, City, State ZIP"></div>
+          <div class="fg"><label>FTC Report # <span class="rq">*</span></label><input id="g-ftc" type="text" placeholder="e.g. 201473281"></div>
           <div class="fg"><label>Target Bureau <span class="rq">*</span></label>
             <select id="g-bureau" onchange="autofillAddr()">
               <option value="Experian">Experian</option>
@@ -767,21 +940,106 @@ footer p{font-size:.88rem;color:var(--t2);}
               <option value="Equifax">Equifax</option>
             </select>
           </div>
-          <div class="fg gf"><label>Bureau Mailing Address</label><input id="g-bureau-addr" value="P.O. Box 9554, Allen, TX 75013"></div>
-          <div class="fg gf"><label>Fraudulent Items to Block <span class="rq">*</span></label><textarea id="g-items" rows="5" placeholder="List each item on its own line:&#10;- LVNV Funding $331 collection&#10;- Capital One Auto inquiry &mdash; 08/24/2024&#10;- Midland Credit Management $643 collection"></textarea></div>
-          <div class="fg"><label>Client DOB (optional)</label><input id="g-dob" type="text" placeholder="MM/DD/YYYY"></div>
-          <div class="fg"><label>SSN Last 4 (optional)</label><input id="g-ssn" type="text" placeholder="XXXX" maxlength="4"></div>
+          <div class="fg gf"><label>Bureau Mailing Address</label><input id="g-bureau-addr" placeholder="Auto-filled from bureau selection"></div>
+          <div class="fg gf"><label>Fraudulent Items to Block <span class="rq">*</span></label><textarea id="g-items" rows="5" placeholder="List each item on its own line, for example:&#10;- LVNV Funding $331 collection&#10;- Capital One Auto inquiry — 08/24/2024&#10;- Midland Credit Management $643 collection"></textarea></div>
+          <div class="fg"><label>Client Date of Birth <span style="font-weight:400;text-transform:none;letter-spacing:0;font-size:.72rem;color:var(--t3)">(optional)</span></label><input id="g-dob" type="text" placeholder="MM/DD/YYYY"></div>
+          <div class="fg"><label>SSN Last 4 <span style="font-weight:400;text-transform:none;letter-spacing:0;font-size:.72rem;color:var(--t3)">(optional)</span></label><input id="g-ssn" type="text" placeholder="Last 4 digits only" maxlength="4"></div>
         </div>
-        <div style="margin-top:1.5rem;"><button class="btn btn-gold" onclick="generateLetter()">Generate Letter &rarr;</button></div>
+        <div style="margin-top:1.8rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap;">
+          <button class="btn btn-gold" onclick="generateLetter()">&#128196; Generate Letter &rarr;</button>
+          <span style="font-size:.83rem;color:var(--t3);">You'll enter your info to unlock the letter</span>
+        </div>
       </div>
       <div class="gen-b" id="tab-output" style="display:none;">
-        <div class="gen-out" id="letter-output">Fill in the form and click "Generate Letter" to create your 605B block letter.</div>
+        <div class="gen-out" id="letter-output">Your 605B letter will appear here after you generate it.</div>
         <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.5rem;">
           <button class="btn btn-gold" onclick="copyLetter()">&#128203; Copy Letter</button>
+          <button class="btn btn-outline" onclick="printLetter()">&#128424;&#65039; Print Letter</button>
           <button class="btn btn-ghost" onclick="switchTab('input')">&larr; Edit Details</button>
         </div>
-        <p id="copy-confirm" style="display:none;color:var(--green);font-size:.9rem;margin-top:.8rem;">&#10003; Letter copied to clipboard!</p>
+        <p id="copy-confirm" style="display:none;color:var(--green);font-size:.9rem;margin-top:.8rem;">&#10003; Copied to clipboard!</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLS FOR YOUR BUSINESS -->
+<section id="tools" class="section">
+  <div class="wrap">
+    <div class="eyebrow reveal" style="text-align:center;">For Credit Repair Operators</div>
+    <h2 class="reveal" style="text-align:center;">The Tools Your Business <span class="grad">Needs to Survive Daily</span></h2>
+    <p class="reveal" style="text-align:center;max-width:580px;margin:0 auto 0;">Filing is one piece. These are the three things breaking your operations, costing you clients, and keeping you up at night — solved.</p>
+    <div class="tools-g">
+
+      <!-- CARD 1: CROA Compliance Kit -->
+      <div class="tool-card reveal">
+        <div class="tool-bg-n">01</div>
+        <div class="tool-pain">Am I even legal?</div>
+        <div class="tool-name">CROA Compliance Kit</div>
+        <p class="tool-body">You're taking money from clients, signing agreements, and making promises — and if your contracts don't include the exact federal disclosure language the FTC requires, you are exposed. It doesn't matter how good your results are. One complaint from the wrong client and the FTC becomes <em style="color:var(--t1);font-style:normal;">your</em> problem. Most credit repair businesses are running on paperwork they found online or copied from someone else. That's not protection — that's borrowed risk with your name on it.</p>
+        <ul class="tool-includes">
+          <li>Client service agreement — fully CROA compliant</li>
+          <li>Required federal disclosure statement (exact FTC language)</li>
+          <li>Written client authorization form</li>
+          <li>Cancellation rights notice — no advance fee language</li>
+          <li>One-page CROA reference guide — what you can and cannot do</li>
+        </ul>
+        <div class="tool-footer">
+          <div class="tool-price">$97</div>
+          <div class="tool-early-tag">Early Access — Founding Member Pricing</div>
+          <a href="mailto:hello@disputedispatch.com?subject=Early Access: CROA Compliance Kit" class="tool-cta">Reserve My Kit &rarr;</a>
+        </div>
+      </div>
+
+      <!-- CARD 2: Dispute Letter Library (featured) -->
+      <div class="tool-card featured-tool reveal d1">
+        <div class="tool-bg-n">02</div>
+        <div class="tool-pain">I don't have a letter for this</div>
+        <div class="tool-name">Complete Dispute Letter Library</div>
+        <p class="tool-body">A $300 collection and a verified inquiry are not the same situation. A goodwill request is not a method of verification demand. A debt validation letter is not a direct creditor dispute. When you send the wrong letter for the scenario in front of you, you get the wrong result — and your client loses faith in you before the process even had a chance to work. You need a different letter for every different fight.</p>
+        <ul class="tool-includes">
+          <li>Method of Verification request — FCRA §611</li>
+          <li>Debt validation letter — FDCPA §809</li>
+          <li>Direct creditor dispute with legal citation</li>
+          <li>Goodwill removal request (late payments, old collections)</li>
+          <li>Pay-for-delete negotiation letter</li>
+          <li>Unauthorized inquiry dispute — FCRA §604</li>
+          <li>Outdated information removal — 7-year rule</li>
+          <li>Mixed file dispute letter</li>
+        </ul>
+        <div class="tool-footer">
+          <div class="tool-price">$147</div>
+          <div class="tool-early-tag">Early Access — Founding Member Pricing</div>
+          <a href="mailto:hello@disputedispatch.com?subject=Early Access: Dispute Letter Library" class="tool-cta">Reserve My Library &rarr;</a>
+        </div>
+      </div>
+
+      <!-- CARD 3: Round 2 Escalation -->
+      <div class="tool-card reveal d2">
+        <div class="tool-bg-n">03</div>
+        <div class="tool-pain">The bureau said "verified"</div>
+        <div class="tool-name">Round 2 Escalation Service</div>
+        <p class="tool-body">Verified is not the end. It is the beginning of round two. Bureau verification is often nothing more than a computer matching data to itself — it does not mean the item is accurate, and it does not mean you stop. FCRA §611 gives your client the legal right to demand exactly how the item was verified. Most credit repair businesses stop at round one and watch clients walk out the door. We file the escalation for you before that happens.</p>
+        <ul class="tool-includes">
+          <li>Method of Verification request filed on your behalf</li>
+          <li>Direct creditor dispute — FCRA §611 language</li>
+          <li>Legal demand letter citing failure to investigate</li>
+          <li>Bureau follow-up tracking included</li>
+          <li>Attaches to any existing case — no new intake needed</li>
+        </ul>
+        <div class="tool-footer">
+          <div class="tool-price">$75 <sub>/ case add-on</sub></div>
+          <div class="tool-early-tag">Included Free in Monthly Retainer</div>
+          <a href="mailto:hello@disputedispatch.com?subject=Round 2 Escalation: Add to My Case" class="tool-cta">Add to a Case &rarr;</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- BOTTOM CALLOUT -->
+    <div class="xpl-cta reveal" style="margin-top:3rem;margin-bottom:0;">
+      <span style="font-size:1.2rem;flex-shrink:0;margin-top:2px;">&#128161;</span>
+      <p><strong>Founding member pricing ends when each product launches.</strong> Reserve now and lock in the early access rate — you'll be first in line and first to get results. Questions? <a href="mailto:hello@disputedispatch.com" style="color:var(--g3);text-decoration:none;">Email us directly.</a></p>
     </div>
   </div>
 </section>
@@ -898,6 +1156,36 @@ footer p{font-size:.88rem;color:var(--t2);}
   </div>
 </footer>
 
+<!-- PRINT FRAME (only visible when printing) -->
+<div id="print-frame"></div>
+
+<!-- LEAD GATE MODAL -->
+<div class="lead-ov" id="lead-gate">
+  <div class="lead-box">
+    <div class="lead-icon">&#128196;</div>
+    <h3>Almost There — <em>One Quick Step</em></h3>
+    <p>Enter your details below to generate and download your 605B block letter instantly. We'll also send you useful credit repair resources.</p>
+    <form class="lead-form" id="leadGateForm">
+      <div class="lead-field">
+        <label>First Name <span class="rq">*</span></label>
+        <input id="lg-name" type="text" placeholder="Your first name" required autocomplete="given-name">
+      </div>
+      <div class="lead-field">
+        <label>Email Address <span class="rq">*</span></label>
+        <input id="lg-email" type="email" placeholder="your@email.com" required autocomplete="email">
+        <span class="lead-err" id="lg-email-err">Please enter a valid email address.</span>
+      </div>
+      <div class="lead-field">
+        <label>Phone Number <span class="opt-tag">(optional)</span></label>
+        <input id="lg-phone" type="tel" placeholder="(555) 000-0000" autocomplete="tel">
+      </div>
+      <div class="lead-privacy">Your info is private. We never sell or spam.</div>
+      <button type="submit" class="lead-sub">&#128196; Generate My Letter &rarr;</button>
+      <p class="lead-fine">By continuing you agree to receive occasional credit repair tips. Unsubscribe anytime.</p>
+    </form>
+  </div>
+</div>
+
 <!-- POPUP -->
 <div class="pop-ov" id="popup">
   <div class="pop-box">
@@ -955,6 +1243,7 @@ async function submitPopup(e){
 // BUREAU ADDRESSES
 const BA={Experian:'P.O. Box 9554, Allen, TX 75013',TransUnion:'P.O. Box 2000, Chester, PA 19016',Equifax:'P.O. Box 740256, Atlanta, GA 30374'};
 function autofillAddr(){document.getElementById('g-bureau-addr').value=BA[document.getElementById('g-bureau').value]||'';}
+autofillAddr(); // populate on load
 
 // TABS
 function switchTab(t){
@@ -963,32 +1252,152 @@ function switchTab(t){
   document.querySelectorAll('.gen-tab').forEach((x,i)=>x.classList.toggle('active',(t==='input'&&i===0)||(t==='output'&&i===1)));
 }
 
-// 605B GENERATOR
+// ─── 605B GENERATOR ────────────────────────────────────────────────────────
+
+// Store pending letter data until lead is captured
+let _pendingLetterData = null;
+
+// Format YYYY-MM-DD → "Month D, YYYY"
+function formatDateForLetter(val){
+  if(!val)return'';
+  const[y,m,d]=val.split('-').map(Number);
+  const months=['January','February','March','April','May','June','July','August','September','October','November','December'];
+  return months[m-1]+' '+d+', '+y;
+}
+
+// Step 1 — validate form fields, then open lead gate
 function generateLetter(){
   const n=document.getElementById('g-name').value.trim();
-  const d=document.getElementById('g-date').value.trim();
+  const d=document.getElementById('g-date').value;
   const a=document.getElementById('g-addr').value.trim();
   const f=document.getElementById('g-ftc').value.trim();
-  const b=document.getElementById('g-bureau').value;
-  const ba=document.getElementById('g-bureau-addr').value.trim();
   const it=document.getElementById('g-items').value.trim();
-  const dob=document.getElementById('g-dob').value.trim();
-  const ssn=document.getElementById('g-ssn').value.trim();
-  if(!n||!d||!a||!f||!it){alert('Please fill in all required fields.');return;}
+  if(!n||!d||!a||!f||!it){
+    alert('Please fill in all required fields:\n• Client Full Name\n• Letter Date\n• Client Full Address\n• FTC Report #\n• Fraudulent Items to Block');
+    return;
+  }
+  // Stash all form values
+  _pendingLetterData={
+    n, d,
+    a, f,
+    b:document.getElementById('g-bureau').value,
+    ba:document.getElementById('g-bureau-addr').value.trim(),
+    it,
+    dob:document.getElementById('g-dob').value.trim(),
+    ssn:document.getElementById('g-ssn').value.trim()
+  };
+  // Open lead gate
+  document.getElementById('lead-gate').classList.add('visible');
+}
+
+// Step 2 — called after lead is captured; actually build the letter
+function doGenerateLetter(){
+  const{n,d,a,f,b,ba,it,dob,ssn}=_pendingLetterData;
+  const dateStr=formatDateForLetter(d);
   const id=[dob?'Date of Birth: '+dob:'',ssn?'SSN (Last 4): XXX-XX-'+ssn:''].filter(Boolean).join('\n');
-  const items=it.split('\n').map(l=>l.trim()).filter(Boolean).map(l=>'  \u2022 '+l.replace(/^[-\u2022*]\s*/,'')).join('\n');
-  const letter=n+'\n'+a+(id?'\n'+id:'')+'\n\n'+d+'\n\n'+b+'\n'+ba+'\n\nRE: FORMAL REQUEST TO BLOCK FRAUDULENT INFORMATION PURSUANT TO FCRA \u00a7 605B\n    FTC Identity Theft Report Number: '+f+'\n\nTo Whom It May Concern:\n\nMy name is '+n+'. I am writing to formally request that you immediately block the fraudulent information listed below from my credit file, pursuant to Section 605B of the Fair Credit Reporting Act, 15 U.S.C. \u00a7 1681c-2.\n\nI am a victim of identity theft. My FTC Identity Theft Report Number is '+f+', on file at identitytheft.gov.\n\nThe following items on my '+b+' credit report are the direct result of identity theft:\n\n'+items+'\n\nUnder FCRA \u00a7 605B(a), you are legally required to block this information within 4 business days of receipt. I expect written confirmation of the block within 5 business days.\n\nSincerely,\n\n\n'+n+'\n'+a+'\n\nEnclosures:\n  \u2022 FTC Identity Theft Report #'+f+'\n  \u2022 Copy of government-issued photo ID\n\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nLEGAL NOTICE: Failure to comply within the statutory 4-business-day period may subject your agency to liability under 15 U.S.C. \u00a7 1681n or \u00a7 1681o, including actual damages, statutory damages up to $1,000 per violation, and attorney\'s fees.';
+  const items=it.split('\n').map(l=>l.trim()).filter(Boolean).map(l=>'\u2022 '+l.replace(/^[-\u2022*]\s*/,'')).join('\n');
+  const letter=
+    n+'\n'+a+(id?'\n'+id:'')+'\n\n'+
+    dateStr+'\n\n'+
+    b+'\n'+ba+'\n\n'+
+    'RE: FORMAL REQUEST TO BLOCK FRAUDULENT INFORMATION PURSUANT TO FCRA \u00a7 605B\n'+
+    '    FTC Identity Theft Report Number: '+f+'\n\n'+
+    'To Whom It May Concern:\n\n'+
+    'My name is '+n+'. I am writing to formally request that you immediately block the fraudulent information listed below from my credit file, pursuant to Section 605B of the Fair Credit Reporting Act, 15 U.S.C. \u00a7 1681c-2.\n\n'+
+    'I am a victim of identity theft. My FTC Identity Theft Report Number is '+f+', on file at identitytheft.gov.\n\n'+
+    'The following items on my '+b+' credit report are the direct result of identity theft:\n\n'+
+    items+'\n\n'+
+    'Under FCRA \u00a7 605B(a), you are legally required to block this information within 4 business days of receipt. I expect written confirmation of the block within 5 business days.\n\n'+
+    'Sincerely,\n\n\n'+n+'\n'+a+'\n\n'+
+    'Enclosures:\n'+
+    '\u2022 FTC Identity Theft Report #'+f+'\n'+
+    '\u2022 Copy of government-issued photo ID\n\n'+
+    '\u2500'.repeat(42)+'\n'+
+    'LEGAL NOTICE: Failure to comply within the statutory 4-business-day period may subject your agency to liability under 15 U.S.C. \u00a7 1681n or \u00a7 1681o, including actual damages, statutory damages up to $1,000 per violation, and attorney\'s fees.';
+
   document.getElementById('letter-output').textContent=letter;
+  // Pre-load print frame
+  document.getElementById('print-frame').textContent=letter;
   switchTab('output');
   document.querySelector('.gen-wrap').scrollIntoView({behavior:'smooth',block:'start'});
 }
+
+// Copy letter
 function copyLetter(){
-  navigator.clipboard.writeText(document.getElementById('letter-output').textContent).then(()=>{
+  const txt=document.getElementById('letter-output').textContent;
+  if(!txt||txt.startsWith('Your 605B')){alert('Generate a letter first.');return;}
+  navigator.clipboard.writeText(txt).then(()=>{
     const c=document.getElementById('copy-confirm');c.style.display='block';setTimeout(()=>c.style.display='none',3000);
   });
 }
 
-// ROI CALCULATOR
+// Print letter
+function printLetter(){
+  const txt=document.getElementById('letter-output').textContent;
+  if(!txt||txt.startsWith('Your 605B')){alert('Generate a letter first.');return;}
+  document.getElementById('print-frame').textContent=txt;
+  window.print();
+}
+
+// ─── LEAD GATE LOGIC ───────────────────────────────────────────────────────
+
+const emailRe=/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+document.getElementById('leadGateForm').addEventListener('submit',async function(e){
+  e.preventDefault();
+
+  const nameVal=document.getElementById('lg-name').value.trim();
+  const emailInp=document.getElementById('lg-email');
+  const emailVal=emailInp.value.trim();
+  const emailErr=document.getElementById('lg-email-err');
+  const phoneVal=document.getElementById('lg-phone').value.trim();
+
+  // Validate email
+  if(!emailRe.test(emailVal)){
+    emailInp.classList.add('err-inp');
+    emailErr.classList.add('show');
+    emailInp.focus();
+    return;
+  }
+  emailInp.classList.remove('err-inp');
+  emailErr.classList.remove('show');
+
+  const btn=e.target.querySelector('.lead-sub');
+  btn.textContent='Generating...';btn.disabled=true;
+
+  // Non-blocking lead capture → formspree
+  const fd=new FormData();
+  fd.append('lead_name',nameVal);
+  fd.append('lead_email',emailVal);
+  if(phoneVal)fd.append('lead_phone',phoneVal);
+  fd.append('source','letter_generator_605b');
+  fetch('https://formspree.io/f/maqvkvda',{method:'POST',body:fd,headers:{Accept:'application/json'}}).catch(()=>{});
+
+  // Close modal
+  document.getElementById('lead-gate').classList.remove('visible');
+
+  // Generate the letter
+  doGenerateLetter();
+
+  // Reset button + form for next time
+  btn.textContent='📄 Generate My Letter →';btn.disabled=false;
+  e.target.reset();
+});
+
+// Close lead gate if clicking outside the box (not blocking UX)
+document.getElementById('lead-gate').addEventListener('click',function(e){
+  if(e.target===this)this.classList.remove('visible');
+});
+
+// Live email validation feedback
+document.getElementById('lg-email').addEventListener('input',function(){
+  if(emailRe.test(this.value.trim())){
+    this.classList.remove('err-inp');
+    document.getElementById('lg-email-err').classList.remove('show');
+  }
+});
+
+// ─── ROI CALCULATOR ────────────────────────────────────────────────────────
 function calcROI(){
   const cases=+document.getElementById('sl-cases').value;
   const charge=+document.getElementById('sl-charge').value;
