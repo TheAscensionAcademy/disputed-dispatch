@@ -1064,8 +1064,8 @@ input[type=date]::-webkit-calendar-picker-indicator:hover{opacity:1;}
         </div>
         <div style="margin-top:1.8rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap;">
           <button class="btn btn-gold" onclick="generateLetter()">&#128196; Generate Letter &rarr;</button>
-          <span style="font-size:.83rem;color:var(--t3);">You'll enter your info to unlock the letter</span>
         </div>
+        <p id="gen-error" style="display:none;color:var(--red);font-size:.88rem;margin-top:.9rem;background:rgba(255,69,96,.07);border:1px solid rgba(255,69,96,.2);border-radius:10px;padding:.75rem 1rem;"></p>
       </div>
       <div class="gen-b" id="tab-output" style="display:none;">
         <div class="gen-out" id="letter-output">
@@ -1394,6 +1394,12 @@ function formatDateForLetter(val){
   return months[m-1]+' '+d+', '+y;
 }
 
+function showGenError(msg){
+  const el=document.getElementById('gen-error');
+  el.textContent=msg;el.style.display='block';
+  setTimeout(()=>el.style.display='none',4000);
+}
+
 function generateLetter(){
   const n=document.getElementById('g-name').value.trim();
   const d=document.getElementById('g-date').value;
@@ -1401,9 +1407,10 @@ function generateLetter(){
   const f=document.getElementById('g-ftc').value.trim();
   const it=document.getElementById('g-items').value.trim();
   if(!n||!d||!a||!f||!it){
-    alert('Please fill in all required fields:\n• Client Full Name\n• Letter Date\n• Client Full Address\n• FTC Report #\n• Fraudulent Items to Block');
+    showGenError('Please fill in all required fields: Client Full Name, Letter Date, Client Full Address, FTC Report #, and Fraudulent Items to Block.');
     return;
   }
+  document.getElementById('gen-error').style.display='none';
   _pendingLetterData={n,d,a,f,b:document.getElementById('g-bureau').value,ba:document.getElementById('g-bureau-addr').value.trim(),it,dob:document.getElementById('g-dob').value.trim(),ssn:document.getElementById('g-ssn').value.trim()};
   doGenerateLetter();
 }
@@ -1424,7 +1431,7 @@ function doGenerateLetter(){
 
 function copyLetter(){
   const txt=document.getElementById('letter-output').textContent;
-  if(!txt||txt.includes('will appear here')){alert('Generate a letter first.');return;}
+  if(!txt||txt.includes('will appear here')){showGenError('Generate a letter first.');return;}
   navigator.clipboard.writeText(txt).then(()=>{
     const c=document.getElementById('copy-confirm');c.style.display='block';setTimeout(()=>c.style.display='none',3000);
   });
@@ -1432,7 +1439,7 @@ function copyLetter(){
 
 function printLetter(){
   const txt=document.getElementById('letter-output').textContent;
-  if(!txt||txt.includes('will appear here')){alert('Generate a letter first.');return;}
+  if(!txt||txt.includes('will appear here')){showGenError('Generate a letter first.');return;}
   document.getElementById('print-frame').textContent=txt;
   window.print();
 }
