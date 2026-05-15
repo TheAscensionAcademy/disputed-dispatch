@@ -1087,33 +1087,6 @@ input[type=date]::-webkit-calendar-picker-indicator:hover{opacity:1;}
   </div>
 </div>
 
-<!-- ROI CALCULATOR -->
-<section class="section bg2">
-  <div class="wrap">
-    <div class="eyebrow reveal">ROI Calculator</div>
-    <h2 class="reveal">See What Your Time Is <span class="grad">Actually Worth</span></h2>
-    <p class="reveal" style="max-width:520px;margin-bottom:0;">If you're filing CFPB complaints manually, move the sliders. See exactly what it's costing your business every month.</p>
-    <div class="calc-wrap reveal">
-      <div class="calc-g">
-        <div class="calc-l">
-          <h3>Your Numbers</h3>
-          <p>Adjust to match your business reality.</p>
-          <div class="sg"><div class="sl-lbl"><span>Cases per month</span><span class="sl-v" id="sv-cases">5</span></div><input type="range" id="sl-cases" min="1" max="30" value="5" oninput="calcROI()"></div>
-          <div class="sg"><div class="sl-lbl"><span>Avg. charge per client ($)</span><span class="sl-v" id="sv-charge">$800</span></div><input type="range" id="sl-charge" min="200" max="2000" step="50" value="800" oninput="calcROI()"></div>
-          <div class="sg"><div class="sl-lbl"><span>Hrs filing per case manually</span><span class="sl-v" id="sv-hrs">6</span></div><input type="range" id="sl-hrs" min="2" max="12" value="6" oninput="calcROI()"></div>
-          <div class="sg"><div class="sl-lbl"><span>Your hourly value ($)</span><span class="sl-v" id="sv-rate">$75</span></div><input type="range" id="sl-rate" min="25" max="200" step="5" value="75" oninput="calcROI()"></div>
-        </div>
-        <div class="crs">
-          <div class="cr"><div class="cr-lbl">Hours Wasted Filing Per Month</div><div class="cr-v" id="r-hrs">30 hrs</div><div class="cr-s">That's almost a full work week &mdash; gone</div></div>
-          <div class="cr"><div class="cr-lbl">Cost of Your Time (Manual Filing)</div><div class="cr-v" id="r-tc">$2,250</div><div class="cr-s">Real money spent on admin work</div></div>
-          <div class="cr"><div class="cr-lbl">DisputeDispatch Monthly Cost</div><div class="cr-v" id="r-dd">$750</div><div class="cr-s">Full Package ($150 &times; your case volume)</div></div>
-          <div class="cr hl"><div class="cr-lbl">&#128176; Net Monthly Gain</div><div class="cr-v" id="r-gain">+$1,500</div><div class="cr-s" id="r-sub">Freed capacity for new clients</div></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- B2B PRICING -->
 <section id="pricing" class="section">
   <div class="wrap">
@@ -1167,6 +1140,32 @@ input[type=date]::-webkit-calendar-picker-indicator:hover{opacity:1;}
         <div class="stripe-n">&#128274; Secured by Stripe</div>
       </div>
     </div>
+
+    <!-- ROI CALCULATOR -->
+    <div style="margin-top:5rem;padding-top:4rem;border-top:1px solid rgba(255,255,255,.06);">
+      <div class="eyebrow reveal" style="text-align:center;">ROI Calculator</div>
+      <h2 class="reveal" style="text-align:center;">See What Your Time Is <span class="grad">Actually Worth</span></h2>
+      <p class="reveal" style="text-align:center;max-width:520px;margin:0 auto 2rem;">If you're filing CFPB complaints manually, move the sliders. See exactly what it's costing your business every month.</p>
+      <div class="calc-wrap reveal">
+        <div class="calc-g">
+          <div class="calc-l">
+            <h3>Your Numbers</h3>
+            <p>Adjust to match your business reality.</p>
+            <div class="sg"><div class="sl-lbl"><span>Cases per month</span><span class="sl-v" id="sv-cases">5</span></div><input type="range" id="sl-cases" min="1" max="30" value="5" oninput="calcROI()"></div>
+            <div class="sg"><div class="sl-lbl"><span>Avg. charge per client ($)</span><span class="sl-v" id="sv-charge">$800</span></div><input type="range" id="sl-charge" min="200" max="2000" step="50" value="800" oninput="calcROI()"></div>
+            <div class="sg"><div class="sl-lbl"><span>Hrs filing per case manually</span><span class="sl-v" id="sv-hrs">6</span></div><input type="range" id="sl-hrs" min="2" max="12" value="6" oninput="calcROI()"></div>
+            <div class="sg"><div class="sl-lbl"><span>Your hourly value ($)</span><span class="sl-v" id="sv-rate">$75</span></div><input type="range" id="sl-rate" min="25" max="200" step="5" value="75" oninput="calcROI()"></div>
+          </div>
+          <div class="crs">
+            <div class="cr"><div class="cr-lbl">Hours Wasted Filing Per Month</div><div class="cr-v" id="r-hrs">30 hrs</div><div class="cr-s">That's almost a full work week &mdash; gone</div></div>
+            <div class="cr"><div class="cr-lbl">Cost of Your Time (Manual Filing)</div><div class="cr-v" id="r-tc">$2,250</div><div class="cr-s">Real money spent on admin work</div></div>
+            <div class="cr"><div class="cr-lbl">DisputeDispatch Monthly Cost</div><div class="cr-v" id="r-dd">$750</div><div class="cr-s">Full Package ($150 &times; your case volume)</div></div>
+            <div class="cr hl"><div class="cr-lbl">&#128176; Net Monthly Gain</div><div class="cr-v" id="r-gain">+$1,500</div><div class="cr-s" id="r-sub">Freed capacity for new clients</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
